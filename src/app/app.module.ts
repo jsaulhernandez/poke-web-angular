@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
+import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from './app.component';
 import * as index from './layout';
@@ -15,6 +16,7 @@ import * as index from './layout';
         BrowserAnimationsModule,
         AppRoutingModule,
         HttpClientModule,
+        SharedModule,
     ],
     providers: [],
     bootstrap: [AppComponent],
