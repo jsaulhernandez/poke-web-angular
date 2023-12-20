@@ -1,0 +1,10 @@
+@import "../core/theming/variables.scss";
+
+.layout {
+    min-height: 100vh;
+
+    &__body {
+        min-height: 100vh;
+        padding-top: $navbar-height;
+    }
+}

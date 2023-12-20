@@ -1,0 +1,15 @@
+@import "../../../core/theming/variables.scss";
+@import "../../../core/theming/colors.scss";
+
+.navbar {
+    top: 0;
+    z-index: 5;
+    width: 100%;
+    height: $navbar-height;
+    background-color: $white;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
+
+    img {
+        height: 50px;
+    }
+}
