@@ -15,18 +15,35 @@
         </div>
 
         <div
-            class="poke-item__content-information d-flex flex-wrap flex-row justify-content-between align-items-center px-3 py-1"
+            class="poke-item__content-types d-flex gap-3 flex-wrap flex-row justify-content-center align-items-center"
+            *ngIf="showAdditionalData"
         >
-            <app-poke-text
-                [text]="'Alt: ' + data.height + 'm'"
-                fontFamily="BOLD"
-                [fontSizeBreakPoints]="['0.875em', '0.875em', '0.875em']"
-            />
-            <app-poke-text
-                [text]="'Peso: ' + data.weight + 'kg'"
-                fontFamily="BOLD"
-                [fontSizeBreakPoints]="['0.875em', '0.875em', '0.875em']"
-            />
+            <div class="poke-item__content-types__item px-3 py-1">
+                <app-poke-text
+                    [text]="data.height + 'M'"
+                    fontFamily="MEDIUM"
+                    [fontSizeBreakPoints]="['0.8em', '0.8em', '0.8em']"
+                />
+            </div>
+            <div class="poke-item__content-types__item px-3 py-1">
+                <app-poke-text
+                    [text]="data.weight + 'KG'"
+                    fontFamily="MEDIUM"
+                    [fontSizeBreakPoints]="['0.8em', '0.8em', '0.8em']"
+                />
+            </div>
+        </div>
+
+        <div
+            class="poke-item__content-types d-flex gap-3 flex-wrap flex-row justify-content-center align-items-center"
+            *ngIf="showAdditionalData"
+        >
+            <div
+                class="poke-item__content-types__item px-3 py-1"
+                *ngFor="let type of data.types"
+            >
+                <app-poke-text [text]="type.type.name" fontFamily="BOLD" />
+            </div>
         </div>
 
         <div
