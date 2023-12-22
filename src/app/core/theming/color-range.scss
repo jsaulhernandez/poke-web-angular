@@ -1,0 +1,32 @@
+$primary-color-range: (
+    200: #025385,
+    500: #03588d,
+    700: #01426a,
+    contrast: (
+        200: #000000,
+        500: #ffffff,
+        700: #ffffff,
+    ),
+);
+
+$accent-color-range: (
+    200: #ffdf7b,
+    500: #ffd342,
+    700: #ffc600,
+    contrast: (
+        200: #01426a,
+        500: #01426a,
+        700: #01426a,
+    ),
+);
+
+$warn-color-range: (
+    200: #f89886,
+    500: #ff3627,
+    700: red,
+    contrast: (
+        200: #000000,
+        500: #ffffff,
+        700: #ffffff,
+    ),
+);

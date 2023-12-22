@@ -1,0 +1,24 @@
+@use "@angular/material" as mat;
+@import "./color-range.scss";
+@include mat.core();
+
+$typography: mat.define-typography-config(
+    $font-family: "'Montserrat', sans-serif",
+);
+
+$my-primary: mat.define-palette($primary-color-range, 700, 500, 200);
+$my-accent: mat.define-palette($accent-color-range, 700, 500, 200);
+$my-warn: mat.define-palette($warn-color-range, 700, 500, 200);
+
+$my-theme: mat.define-light-theme(
+    (
+        color: (
+            primary: $my-primary,
+            accent: $my-accent,
+            warn: $my-warn,
+        ),
+        typography: $typography,
+    )
+);
+
+@include mat.all-component-themes($my-theme);
