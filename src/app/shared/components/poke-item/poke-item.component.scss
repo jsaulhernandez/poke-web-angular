@@ -1,0 +1,17 @@
+@import "../../../core/theming/colors.scss";
+
+.poke-item {
+    &__content {
+        border-radius: 10px;
+        background-color: $gray-3;
+
+        &-media img {
+            height: 75px;
+        }
+
+        &-data {
+            background-color: $dark-blue;
+            border-radius: 10px;
+        }
+    }
+}
