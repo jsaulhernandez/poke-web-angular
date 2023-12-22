@@ -15,9 +15,8 @@ export class ApiService {
     URL: string = API_URL;
     protected httpClient = inject(HttpClient);
 
-    request<T = unknown, R = undefined>(req: OptionRequest<T>) {
+    request<T = unknown, R = undefined>(req: OptionRequest) {
         const httpOptions = {
-            body: req.data,
             params: new HttpParams({ fromObject: req.params }),
         };
 
@@ -26,5 +25,9 @@ export class ApiService {
             `${this.URL}/${req.path}`,
             httpOptions
         );
+    }
+
+    getDataPokemonByUrl<T extends unknown>(url: string) {
+        return this.httpClient.request<T>('GET', url);
     }
 }
