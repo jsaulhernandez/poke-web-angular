@@ -1,8 +1,18 @@
 @import "../../../core/theming/colors.scss";
 
 .poke-item {
-    &__content {
+    &__content,
+    &__content-data,
+    &__content-types__item {
         border-radius: 10px;
+    }
+
+    &__content-data,
+    &__content-types__item {
+        text-transform: capitalize;
+    }
+
+    &__content {
         background-color: $gray-3;
 
         &-media img {
@@ -11,7 +21,11 @@
 
         &-data {
             background-color: $dark-blue;
-            border-radius: 10px;
+        }
+
+        &-types__item {
+            color: $dark-blue;
+            background-color: $white;
         }
     }
 }
