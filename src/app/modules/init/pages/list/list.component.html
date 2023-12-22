@@ -1,1 +1,112 @@
-<p>list works!</p>
+<div class="pokemon-list d-flex flex-column py-2 py-md-5">
+    <div class="d-flex">
+        <app-poke-text
+            text="Listado de Pokemons"
+            fontFamily="BOLD"
+            [fontSizeBreakPoints]="['1.25em', '1.25em', '1.5em']"
+        />
+    </div>
+
+    <div
+        class="pokemon-list__filters row d-flex justify-content-center align-items-center mt-3 pt-3 border-top border-bottom"
+    >
+        <mat-form-field class="col-12 col-md-6 col-lg-3">
+            <mat-label>Generation</mat-label>
+            <mat-select
+                [(ngModel)]="selectedGeneration"
+                name="generation"
+                (ngModelChange)="getPokemonsByGeneration()"
+            >
+                <mat-option [value]="'ALL'">All generations</mat-option>
+                <mat-option *ngFor="let gen of generations" [value]="gen.url">{{
+                    gen.name | titlecase
+                }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="col-12 col-md-6 col-lg-3">
+            <mat-label>Version</mat-label>
+            <mat-select [(ngModel)]="selectedVersion" name="version">
+                <mat-option [value]="'ALL'">All versions</mat-option>
+                <mat-option *ngFor="let vr of versions" [value]="vr.url">{{
+                    vr.name | titlecase
+                }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div
+        class="pokemon-list__filters row d-flex justify-content-center align-items-center pt-3 border-bottom"
+    >
+        <mat-form-field class="col-12 col-sm-6 col-md-12 col-lg-4">
+            <mat-label>Search by name</mat-label>
+            <input
+                matInput
+                placeholder="Search by name"
+                [(ngModel)]="searchByName"
+                name="name"
+                (ngModelChange)="filterData()"
+            />
+            <mat-icon matPrefix>search</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="col-12 col-sm-6 col-md-4 col-lg-2">
+            <mat-label>Type</mat-label>
+            <mat-select
+                [(ngModel)]="selectedType"
+                name="type"
+                (ngModelChange)="filterData()"
+            >
+                <mat-option [value]="'ALL'">All types</mat-option>
+                <mat-option *ngFor="let tp of types" [value]="tp.name">{{
+                    tp.name | titlecase
+                }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="col-12 col-sm-6 col-md-4 col-lg-2">
+            <mat-label>Ability</mat-label>
+            <mat-select
+                [(ngModel)]="selectedAbility"
+                name="ability"
+                (ngModelChange)="filterData()"
+            >
+                <mat-option [value]="'ALL'">All abilities</mat-option>
+                <mat-option *ngFor="let ab of abilities" [value]="ab.name">{{
+                    ab.name | titlecase
+                }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="col-12 col-sm-6 col-md-4 col-lg-2">
+            <mat-label>Sort by</mat-label>
+            <mat-select
+                [(ngModel)]="selectedSortBy"
+                name="sort"
+                (ngModelChange)="filterData()"
+            >
+                <mat-option [value]="'NAME_ASC'">Name asc</mat-option>
+                <mat-option [value]="'NAME_DESC'">Name desc</mat-option>
+                <mat-option [value]="'POKEDEX_ASC'">Pokedex asc</mat-option>
+                <mat-option [value]="'POKEDEX_DESC'">Pokedex desc</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <app-poke-loader *ngIf="isLoading | async"></app-poke-loader>
+
+    <cdk-virtual-scroll-viewport
+        style="height: 500px"
+        itemSize="3"
+        *ngIf="!(isLoading | async)"
+        class="mt-3"
+    >
+        <div class="pokemon-list__content d-flex row w-100">
+            <app-poke-item
+                *cdkVirtualFor="let item of pokemonsList; let i = index"
+                class="col-6 col-sm-4 col-md-3 col-lg-2"
+                [data]="item"
+            />
+        </div>
+    </cdk-virtual-scroll-viewport>
+</div>
