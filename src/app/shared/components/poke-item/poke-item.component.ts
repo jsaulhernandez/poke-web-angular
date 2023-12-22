@@ -8,4 +8,12 @@ import { DataPokemon } from 'src/app/data/api/ResponseApi';
 })
 export class PokeItemComponent {
     @Input() data!: DataPokemon;
+    @Input() showAdditionalData: boolean = false;
+
+    generatePokeNumber(pokeNumber: number): string {
+        if (pokeNumber < 10) return `#00${pokeNumber}`;
+        else if (pokeNumber < 100) return `#0${pokeNumber}`;
+
+        return `#${pokeNumber}`;
+    }
 }

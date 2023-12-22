@@ -11,6 +11,7 @@ import { es } from 'date-fns/locale';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
     declarations: [],
@@ -20,6 +21,7 @@ import { MatSelectModule } from '@angular/material/select';
         MatSelectModule,
         MatInputModule,
         MatIconModule,
+        MatTooltipModule,
     ],
     exports: [
         CommonModule,
@@ -27,6 +29,7 @@ import { MatSelectModule } from '@angular/material/select';
         MatSelectModule,
         MatInputModule,
         MatIconModule,
+        MatTooltipModule,
     ],
     providers: [
         {

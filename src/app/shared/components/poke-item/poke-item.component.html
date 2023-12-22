@@ -1,9 +1,16 @@
 <div class="poke-item pt-4 pb-2">
-    <div class="poke-item__content d-flex flex-column p-2 gap-2">
+    <div
+        class="poke-item__content d-flex flex-column p-2 gap-2 pointer"
+        [matTooltip]="
+            data.data_species.flavor_text_entries.length > 0
+                ? data.data_species.flavor_text_entries[0].flavor_text
+                : 'Without description'
+        "
+    >
         <div class="poke-item__content-media d-flex justify-content-center">
             <img
                 [src]="data.sprites?.other?.dream_world?.front_default ?? ''"
-                alt="alt"
+                [alt]="data.name"
             />
         </div>
 
@@ -26,7 +33,13 @@
             class="poke-item__content-data d-flex flex-wrap flex-row justify-content-between align-items-center px-3 py-1"
         >
             <app-poke-text
-                text="#001"
+                [text]="
+                    generatePokeNumber(
+                        data.data_species.pokedex_numbers.length > 0
+                            ? data.data_species.pokedex_numbers[0].entry_number
+                            : data.id
+                    )
+                "
                 textColor="WHITE"
                 fontFamily="BOLD"
                 [fontSizeBreakPoints]="['0.875em', '0.875em', '0.875em']"
