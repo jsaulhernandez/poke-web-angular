@@ -66,3 +66,7 @@ interface Type {
     slot: number;
     type: Common;
 }
+
+export interface Generation {
+    pokemon_species: Common[];
+}

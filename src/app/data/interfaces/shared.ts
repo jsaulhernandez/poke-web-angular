@@ -8,3 +8,8 @@ export declare type TextColor =
     | 'GRAY_4';
 
 export declare type FontFamily = 'NORMAL' | 'REGULAR' | 'MEDIUM' | 'BOLD';
+export declare type SortBy =
+    | 'NAME_ASC'
+    | 'NAME_DESC'
+    | 'POKEDEX_ASC'
+    | 'POKEDEX_DESC';
