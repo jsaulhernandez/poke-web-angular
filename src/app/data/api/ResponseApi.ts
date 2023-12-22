@@ -23,10 +23,11 @@ export interface DataPokemon {
     forms: Common[];
     game_indices: GameIndice[];
     moves: Move[];
-    species: Common[];
+    species: Common;
     sprites: any;
     stats: Stat[];
     types: Type[];
+    data_species: Specie;
 }
 
 interface Ability {
@@ -69,4 +70,15 @@ interface Type {
 
 export interface Generation {
     pokemon_species: Common[];
+}
+
+export interface Specie {
+    color: Common;
+    flavor_text_entries: {
+        flavor_text: string;
+        version: Common;
+        language: Common;
+    }[];
+    generation: Common;
+    pokedex_numbers: { entry_number: number; pokedex: Common }[];
 }
