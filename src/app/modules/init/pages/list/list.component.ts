@@ -5,12 +5,14 @@ import {
     Common,
     DataBasePokemon,
     DataPokemon,
+    Generation,
+    Specie,
 } from 'src/app/data/api/ResponseApi';
-import { SortBy } from 'src/app/data/interfaces/shared';
 
 import { ApiService } from 'src/app/data/services/api.service';
 import { LoaderService } from 'src/app/shared/services/loader.service';
-import { Generation } from '../../../../data/api/ResponseApi';
+
+import { SortBy } from 'src/app/data/interfaces/shared';
 
 @Component({
     selector: 'app-list',
@@ -50,7 +52,7 @@ export class ListComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {}
 
-    async getAllPokemons(limit = 25, offset = 0) {
+    async getAllPokemons(limit = 50, offset = 0) {
         this.loader$.show();
         try {
             const response = this.api$.request<DataBasePokemon[]>({
@@ -71,6 +73,44 @@ export class ListComponent implements OnInit, OnDestroy {
             console.error('[Error]', error);
             this.loader$.hide();
         }
+    }
+
+    async getDataPokemonByUrl(data: DataBasePokemon[]) {
+        const promises = data.map(async (pokemon) => {
+            // getting data for each pokemon
+            const response = this.api$.getDataPokemonByUrl<DataPokemon>(
+                pokemon.url
+            );
+            let data = (await lastValueFrom(response)) ?? ({} as DataPokemon);
+
+            // getting specie for each pokemon
+            const responseSpecie = this.api$.getDataPokemonByUrl<Specie>(
+                data.species.url
+            );
+            let dataSpecie =
+                (await lastValueFrom(responseSpecie)) ?? ({} as Specie);
+
+            // filtering entries by en
+            dataSpecie = {
+                ...dataSpecie,
+                flavor_text_entries: dataSpecie.flavor_text_entries.filter(
+                    (s) => s.language.name === 'en'
+                ),
+                pokedex_numbers: dataSpecie.pokedex_numbers.filter(
+                    (pn) => pn.pokedex.name === 'national'
+                ),
+            };
+
+            // adding result to pokemon data
+            data = {
+                ...data,
+                data_species: dataSpecie,
+            };
+
+            return data;
+        });
+
+        this.mainList = await Promise.all(promises);
     }
 
     async getCommonData(
@@ -131,6 +171,17 @@ export class ListComponent implements OnInit, OnDestroy {
                 return this.dataBasePokemon.find((p2) => p2.name === p.name);
             });
 
+        // filter data by version
+        if (this.selectedVersion !== 'ALL') {
+            this.pokemonsList = this.pokemonsList.filter((p) => {
+                return p.data_species.flavor_text_entries.find(
+                    (s) =>
+                        s.version.name.toLocaleLowerCase() ===
+                        this.selectedVersion.toLocaleLowerCase()
+                );
+            });
+        }
+
         // search by name
         if (this.searchByName.trim() !== '') {
             this.pokemonsList = this.pokemonsList.filter((p) =>
@@ -165,7 +216,9 @@ export class ListComponent implements OnInit, OnDestroy {
                         : 1
                 ),
             ];
-        } else if (this.selectedSortBy === 'NAME_DESC') {
+        }
+
+        if (this.selectedSortBy === 'NAME_DESC') {
             this.pokemonsList = [
                 ...this.pokemonsList.sort((a, b) =>
                     a.name.toLocaleLowerCase() < b.name.toLocaleLowerCase()
@@ -173,22 +226,18 @@ export class ListComponent implements OnInit, OnDestroy {
                         : -1
                 ),
             ];
-        } else if (this.selectedSortBy === 'POKEDEX_ASC') {
-        } else {
         }
-        console.log(this.selectedSortBy);
-    }
 
-    async getDataPokemonByUrl(data: DataBasePokemon[]) {
-        const promises = data.map(async (pokemon) => {
-            const response = this.api$.getDataPokemonByUrl<DataPokemon>(
-                pokemon.url
-            );
-            const data = (await lastValueFrom(response)) ?? ({} as DataPokemon);
+        if (this.selectedSortBy === 'POKEDEX_ASC') {
+            this.pokemonsList = [
+                ...this.pokemonsList.sort((a, b) => (a.id < b.id ? -1 : 1)),
+            ];
+        }
 
-            return data;
-        });
-
-        this.mainList = await Promise.all(promises);
+        if (this.selectedSortBy === 'POKEDEX_DESC') {
+            this.pokemonsList = [
+                ...this.pokemonsList.sort((a, b) => (a.id < b.id ? 1 : -1)),
+            ];
+        }
     }
 }
