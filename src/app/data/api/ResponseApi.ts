@@ -46,7 +46,7 @@ interface GameIndice {
     version: Common;
 }
 
-interface Move {
+export interface Move {
     move: Common;
     version_group_details: VersionGroupDetail[];
 }
@@ -63,7 +63,7 @@ interface Stat {
     stat: Common;
 }
 
-interface Type {
+export interface Type {
     slot: number;
     type: Common;
 }

@@ -27,6 +27,10 @@ export class ApiService {
         );
     }
 
+    getDataPokemonByName<T extends unknown>(path: string) {
+        return this.httpClient.request<T>('GET', `${this.URL}/${path}`);
+    }
+
     getDataPokemonByUrl<T extends unknown>(url: string) {
         return this.httpClient.request<T>('GET', url);
     }
