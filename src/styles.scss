@@ -2,7 +2,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
 
 @import "./app/core/theming/theming.scss";
+@import "./app/core/theming/colors.scss";
 
+@import "./assets/scss/_mat-progress-bar.scss";
 @import "./assets/scss/_scroll-bar.scss";
 
 html,
@@ -23,4 +25,84 @@ body {
 
 .capitalize {
     text-transform: capitalize;
+}
+
+.ele-bg-normal {
+    background-color: $ele-normal !important;
+}
+
+.ele-bg-fighting {
+    background-color: $ele-fighting !important;
+}
+
+.ele-bg-flying {
+    background-color: $ele-flying !important;
+}
+
+.ele-bg-poison {
+    background-color: $ele-poison !important;
+}
+
+.ele-bg-ground {
+    background-color: $ele-ground !important;
+}
+
+.ele-bg-rock {
+    background-color: $ele-rock !important;
+}
+
+.ele-bg-bug {
+    background-color: $ele-bug !important;
+}
+
+.ele-bg-ghost {
+    background-color: $ele-ghost !important;
+}
+
+.ele-bg-steel {
+    background-color: $ele-steel !important;
+}
+
+.ele-bg-fire {
+    background-color: $ele-fire !important;
+}
+
+.ele-bg-water {
+    background-color: $ele-water !important;
+}
+
+.ele-bg-grass {
+    background-color: $ele-grass !important;
+}
+
+.ele-bg-electric {
+    background-color: $ele-electric !important;
+}
+
+.ele-bg-psychic {
+    background-color: $ele-psychic !important;
+}
+
+.ele-bg-ice {
+    background-color: $ele-ice !important;
+}
+
+.ele-bg-dragon {
+    background-color: $ele-dragon !important;
+}
+
+.ele-bg-dark {
+    background-color: $ele-dark !important;
+}
+
+.ele-bg-fairy {
+    background-color: $ele-fairy !important;
+}
+
+.ele-bg-unknown {
+    background-color: $ele-unknown !important;
+}
+
+.ele-bg-shadow {
+    background-color: $ele-shadow !important;
 }
