@@ -1,0 +1,29 @@
+@import "../../../../core/theming/colors.scss";
+
+.pokemon-detail {
+    &__content {
+        &-media {
+            text-transform: capitalize;
+
+            img {
+                width: 100%;
+                max-height: 276px;
+            }
+        }
+
+        &-moves__item {
+            background-color: $dark-blue;
+            border-radius: 10px;
+            text-transform: capitalize;
+        }
+    }
+}
+
+:host ::ng-deep mat-progress-bar {
+    height: 40px;
+    border-radius: 10px;
+}
+
+:host ::ng-deep mat-progress-bar .mdc-linear-progress__bar-inner {
+    border-top-width: 40px;
+}

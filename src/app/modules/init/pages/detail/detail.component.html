@@ -1,1 +1,101 @@
-<p>detail works!</p>
+<div class="pokemon-detail d-flex flex-column py-2 py-md-5">
+    <div
+        class="d-flex align-items-center gap-2 pointer"
+        (click)="onRedirectToList()"
+    >
+        <mat-icon color="primary">keyboard_arrow_left</mat-icon>
+        <app-poke-text
+            text="Detail"
+            fontFamily="BOLD"
+            [fontSizeBreakPoints]="['1.5em', '1.5em', '1.5em']"
+        />
+    </div>
+
+    <app-poke-loader *ngIf="isLoading | async" />
+
+    <div
+        class="pokemon-detail__content row py-3 w-100"
+        *ngIf="!(isLoading | async)"
+    >
+        <div
+            class="pokemon-detail__content-media d-flex flex-column align-items-center col-12 col-sm-4 gap-1"
+        >
+            <img
+                [src]="pokemon.sprites?.other?.dream_world?.front_default ?? ''"
+                [alt]="pokemon.name"
+            />
+            <app-poke-text
+                [text]="pokemon.name"
+                textColor="BLACK"
+                fontFamily="BOLD"
+                [fontSizeBreakPoints]="['1.5em', '1.5em', '1.5em']"
+            />
+            <app-poke-text
+                [text]="processTypes(pokemon.types)"
+                textColor="BLACK"
+                fontFamily="MEDIUM"
+            />
+        </div>
+
+        <div class="col-12 col-sm-8">
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <app-poke-text
+                        text="Stats"
+                        fontFamily="BOLD"
+                        textColor="GRAY"
+                        [fontSizeBreakPoints]="['1.5em', '1.5em', '1.5em']"
+                    />
+                    <div
+                        class="row d-flex align-items-center pb-3"
+                        *ngFor="let stat of pokemon.stats; let i = index"
+                    >
+                        <div class="col-4">
+                            <app-poke-text
+                                [text]="transformStatKey(stat.stat.name)"
+                                fontFamily="BOLD"
+                                textColor="GRAY"
+                            />
+                        </div>
+                        <div
+                            class="col-8 d-flex flex-row align-items-center gap-2"
+                        >
+                            <mat-progress-bar
+                                mode="determinate"
+                                [value]="getStatWidth(i)"
+                            ></mat-progress-bar>
+                            <app-poke-text
+                                [text]="stat.base_stat + ''"
+                                fontFamily="BOLD"
+                                textColor="GRAY"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pokemon-detail__content-moves col-12 col-lg-6">
+                    <app-poke-text
+                        text="Moves"
+                        fontFamily="BOLD"
+                        textColor="GRAY"
+                        [fontSizeBreakPoints]="['1.5em', '1.5em', '1.5em']"
+                    />
+
+                    <cdk-virtual-scroll-viewport
+                        style="height: 300px"
+                        itemSize="10"
+                    >
+                        <div class="d-flex flex-row flex-wrap gap-3">
+                            <div
+                                class="pokemon-detail__content-moves__item px-3 py-1"
+                                *cdkVirtualFor="let m of moves"
+                            >
+                                <app-poke-text [text]="m" textColor="WHITE" />
+                            </div>
+                        </div>
+                    </cdk-virtual-scroll-viewport>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
