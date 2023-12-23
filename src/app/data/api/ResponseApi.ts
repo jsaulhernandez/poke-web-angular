@@ -81,4 +81,15 @@ export interface Specie {
     }[];
     generation: Common;
     pokedex_numbers: { entry_number: number; pokedex: Common }[];
+    evolution_chain: { url: string };
+}
+
+export interface EvolutionChain {
+    chain: {
+        evolves_to: {
+            evolves_to: { species: Common }[];
+            species: Common;
+        }[];
+        species: Common;
+    };
 }
