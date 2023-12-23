@@ -10,19 +10,18 @@
             }
         }
 
-        &-moves__item {
-            background-color: $dark-blue;
+        &-moves__item,
+        &-evolutions__item {
             border-radius: 10px;
             text-transform: capitalize;
         }
 
-        &-evolutions__item {
+        &-moves__item {
             background-color: $dark-blue;
-            border-radius: 10px;
-            text-transform: capitalize;
-            img {
-                max-height: 64px;
-            }
+        }
+
+        &-evolutions__item img {
+            max-height: 64px;
         }
     }
 }

@@ -3,13 +3,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 
 import {
-    Common,
     DataPokemon,
     EvolutionChain,
     Move,
     Specie,
     Type,
 } from 'src/app/data/api/ResponseApi';
+import { Evolution } from 'src/app/data/interfaces/evolution';
 
 import { ApiService } from 'src/app/data/services/api.service';
 import { LoaderService } from 'src/app/shared/services/loader.service';
@@ -25,11 +25,8 @@ export class DetailComponent implements OnInit, OnDestroy {
     isLoading = this.loader$.loading$;
     pokemon!: DataPokemon;
     moves: string[] = [];
-    evolutions: {
-        item: Common;
-        color: Common;
-        generation: Common;
-    }[] = [];
+    evolutions: Evolution[] = [];
+    firstElement: string = '';
 
     constructor(
         private activatedRoute: ActivatedRoute,
@@ -42,8 +39,6 @@ export class DetailComponent implements OnInit, OnDestroy {
         await this.getPokemonByName(
             this.activatedRoute.snapshot.paramMap.get('pokemon') ?? ''
         );
-        if (this.pokemon)
-            this.moves = this.transformMovesKey(this.pokemon.moves);
     }
 
     ngOnDestroy(): void {}
@@ -56,6 +51,8 @@ export class DetailComponent implements OnInit, OnDestroy {
                 'pokemon'
             );
             await this.getOtherData(dataBase);
+
+            this.moves = this.transformMovesKey(this.pokemon.moves);
             this.loader$.hide();
         } catch (error) {
             console.error('[Error]', error);
@@ -82,6 +79,11 @@ export class DetailComponent implements OnInit, OnDestroy {
         );
         let dataSpecie =
             (await lastValueFrom(responseSpecie)) ?? ({} as Specie);
+        // adding specie to data pokemon
+        data = {
+            ...data,
+            data_species: dataSpecie,
+        };
 
         // getting evolutions
         const responseEvolution = this.api$.getDataPokemonByUrl<EvolutionChain>(
@@ -161,7 +163,8 @@ export class DetailComponent implements OnInit, OnDestroy {
             }
         }
 
-        console.log(this.evolutions);
+        this.firstElement =
+            data.types.length > 0 ? data.types[0].type.name : 'unknown';
         this.pokemon = data;
     }
 
@@ -176,9 +179,9 @@ export class DetailComponent implements OnInit, OnDestroy {
             case 'attack':
                 return 'Attack';
             case 'defense':
-                return 'HP';
-            case 'Special Attack':
-                return 'HP';
+                return 'Defense';
+            case 'special-attack':
+                return 'Special Attack';
             case 'special-defense':
                 return 'Special Defense';
 
