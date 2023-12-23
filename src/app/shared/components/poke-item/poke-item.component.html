@@ -10,7 +10,9 @@
     >
         <div class="poke-item__content-media d-flex justify-content-center">
             <img
-                [src]="data.sprites?.other?.dream_world?.front_default ?? ''"
+                [src]="
+                    data.sprites?.other['official-artwork']?.front_default ?? ''
+                "
                 [alt]="data.name"
             />
         </div>
