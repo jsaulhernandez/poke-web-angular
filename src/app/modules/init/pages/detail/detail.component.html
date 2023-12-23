@@ -14,15 +14,16 @@
     <app-poke-loader *ngIf="isLoading | async" />
 
     <div
-        class="pokemon-detail__content row py-3 w-100"
+        class="pokemon-detail__content row pt-0 pt-5 w-100"
         *ngIf="!(isLoading | async)"
     >
         <div
-            class="pokemon-detail__content-media d-flex flex-column align-items-center col-12 col-sm-4 gap-1"
+            class="pokemon-detail__content-media d-flex flex-column align-items-center col-12 col-lg-4 gap-1"
         >
             <img
                 [src]="pokemon.sprites?.other?.dream_world?.front_default ?? ''"
                 [alt]="pokemon.name"
+                class="px-5"
             />
             <app-poke-text
                 [text]="pokemon.name"
@@ -37,7 +38,7 @@
             />
         </div>
 
-        <div class="col-12 col-sm-8">
+        <div class="col-12 col-lg-8">
             <div class="row">
                 <div class="col-12 col-lg-6">
                     <app-poke-text
