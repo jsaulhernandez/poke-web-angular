@@ -5,7 +5,8 @@ export declare type TextColor =
     | 'GRAY'
     | 'GRAY_2'
     | 'GRAY_3'
-    | 'GRAY_4';
+    | 'GRAY_4'
+    | 'BLACK';
 
 export declare type FontFamily = 'NORMAL' | 'REGULAR' | 'MEDIUM' | 'BOLD';
 export declare type SortBy =
