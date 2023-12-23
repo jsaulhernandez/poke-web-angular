@@ -21,7 +21,10 @@
             class="pokemon-detail__content-media d-flex flex-column align-items-center col-12 col-lg-4 gap-1"
         >
             <img
-                [src]="pokemon.sprites?.other?.dream_world?.front_default ?? ''"
+                [src]="
+                    pokemon.sprites?.other['official-artwork']?.front_default ??
+                    ''
+                "
                 [alt]="pokemon.name"
                 class="px-5"
             />
@@ -61,15 +64,15 @@
                         <div
                             class="col-8 d-flex flex-row align-items-center gap-2"
                         >
-                            <mat-progress-bar
-                                mode="determinate"
-                                [value]="getStatWidth(i)"
-                            ></mat-progress-bar>
                             <app-poke-text
                                 [text]="stat.base_stat + ''"
                                 fontFamily="BOLD"
                                 textColor="GRAY"
                             />
+                            <mat-progress-bar
+                                mode="determinate"
+                                [value]="getStatWidth(i)"
+                            ></mat-progress-bar>
                         </div>
                     </div>
                 </div>
@@ -95,6 +98,53 @@
                             </div>
                         </div>
                     </cdk-virtual-scroll-viewport>
+                </div>
+            </div>
+        </div>
+
+        <div class="pokemon-detail__content-evolutions col-12">
+            <app-poke-text
+                text="Evolutions"
+                fontFamily="BOLD"
+                textColor="GRAY"
+                [fontSizeBreakPoints]="['1.5em', '1.5em', '1.5em']"
+            />
+
+            <div class="row">
+                <div
+                    class="col-12 col-sm-6 col-lg-4 pb-3 pb-lg-0"
+                    *ngFor="let e of evolutions"
+                >
+                    <div
+                        class="pokemon-detail__content-evolutions__item d-flex flex-row align-items-center gap-3 p-3"
+                    >
+                        <div class="d-flex flex-row align-items-center gap-2">
+                            <img [src]="e.item.url" [alt]="e.item.name" />
+
+                            <div class="d-flex flex-column">
+                                <app-poke-text
+                                    [text]="e.item.name"
+                                    fontFamily="MEDIUM"
+                                    textColor="WHITE"
+                                    [fontSizeBreakPoints]="[
+                                        '1.25em',
+                                        '1.25em',
+                                        '1.25em'
+                                    ]"
+                                />
+                                <app-poke-text
+                                    [text]="e.generation.name"
+                                    fontFamily="REGULAR"
+                                    textColor="WHITE"
+                                    [fontSizeBreakPoints]="[
+                                        '0.875em',
+                                        '0.875em',
+                                        '0.875em'
+                                    ]"
+                                />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
