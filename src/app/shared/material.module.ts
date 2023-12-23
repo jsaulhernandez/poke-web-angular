@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
     declarations: [],
@@ -24,6 +25,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
         MatIconModule,
         MatTooltipModule,
         MatProgressBarModule,
+        MatTableModule,
     ],
     exports: [
         CommonModule,
@@ -33,6 +35,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
         MatIconModule,
         MatTooltipModule,
         MatProgressBarModule,
+        MatTableModule,
     ],
     providers: [
         {
