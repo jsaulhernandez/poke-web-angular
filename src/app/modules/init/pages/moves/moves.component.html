@@ -14,27 +14,51 @@
     >
         <mat-form-field class="col-12 col-sm-6 col-md-12 col-lg-4">
             <mat-label>Search by name</mat-label>
-            <input matInput placeholder="Search by name" />
+            <input
+                matInput
+                placeholder="Search by name"
+                [(ngModel)]="searchByName"
+                name="name"
+                (ngModelChange)="filterData()"
+            />
             <mat-icon matPrefix>search</mat-icon>
         </mat-form-field>
 
         <mat-form-field class="col-12 col-sm-6 col-md-4 col-lg-2">
             <mat-label>Type</mat-label>
-            <mat-select name="type">
+            <mat-select
+                [(ngModel)]="selectedType"
+                name="sort"
+                (ngModelChange)="filterData()"
+            >
                 <mat-option [value]="'ALL'">All types</mat-option>
+                <mat-option *ngFor="let tp of types" [value]="tp.name">{{
+                    tp.name | titlecase
+                }}</mat-option>
             </mat-select>
         </mat-form-field>
 
         <mat-form-field class="col-12 col-sm-6 col-md-4 col-lg-2">
             <mat-label>Category</mat-label>
-            <mat-select name="category">
+            <mat-select
+                [(ngModel)]="selectedCategory"
+                name="category"
+                (ngModelChange)="filterData()"
+            >
                 <mat-option [value]="'ALL'">All categories</mat-option>
+                <mat-option *ngFor="let ct of categories" [value]="ct.name">{{
+                    transformCategoryText(ct.name) | titlecase
+                }}</mat-option>
             </mat-select>
         </mat-form-field>
 
         <mat-form-field class="col-12 col-sm-6 col-md-4 col-lg-2">
             <mat-label>Sort by</mat-label>
-            <mat-select name="sort">
+            <mat-select
+                [(ngModel)]="selectedSortBy"
+                name="sort"
+                (ngModelChange)="filterData()"
+            >
                 <mat-option [value]="'NAME_ASC'">Name asc</mat-option>
                 <mat-option [value]="'NAME_DESC'">Name desc</mat-option>
             </mat-select>
@@ -45,7 +69,7 @@
     <app-poke-loader *ngIf="isLoading | async"></app-poke-loader>
     <!-- table -->
     <section
-        class="example-container mat-elevation-z8 mt-5"
+        class="moves__table mat-elevation-z8 mt-5"
         tabindex="0"
         *ngIf="!(isLoading | async)"
     >
@@ -59,13 +83,19 @@
             <ng-container matColumnDef="type">
                 <th mat-header-cell *matHeaderCellDef>Type</th>
                 <td mat-cell *matCellDef="let element">
-                    {{ element.type | titlecase }}
+                    <div class="d-flex align-items-center gap-2">
+                        <span
+                            class="moves__table-item-type"
+                            [ngClass]="['ele-bg-' + element.type]"
+                        ></span
+                        >{{ element.type | titlecase }}
+                    </div>
                 </td>
             </ng-container>
             <ng-container matColumnDef="cat">
                 <th mat-header-cell *matHeaderCellDef>Category</th>
                 <td mat-cell *matCellDef="let element">
-                    {{ element.cat | titlecase }}
+                    {{ transformCategoryText(element.cat) | titlecase }}
                 </td>
             </ng-container>
             <ng-container matColumnDef="description">
