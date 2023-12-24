@@ -13,3 +13,12 @@ export const MY_FORMATS = {
         monthYearA11yLabel: 'MMM yyyy',
     },
 };
+
+export const HOBBIES = [
+    'Play Soccer',
+    'Jugar Basquetball',
+    'Jugar Tennis',
+    'Jugar Voleibal',
+    'Jugar Fifa',
+    'Jugar Videojuegos',
+];

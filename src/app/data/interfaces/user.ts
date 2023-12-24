@@ -3,4 +3,6 @@ export interface User {
     hobbies?: string[];
     dateBirth: string;
     document: string;
+    base64: string;
+    nameImage: string;
 }
