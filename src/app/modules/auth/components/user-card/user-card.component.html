@@ -1,0 +1,51 @@
+<div class="user-card d-flex flex-column gap-4 px-4 py-5">
+    <app-poke-text
+        text="Imágen de perfil"
+        class="text-center"
+        fontFamily="MEDIUM"
+        [fontSizeBreakPoints]="['1.5em', '1.5em', '1.5em']"
+    />
+
+    <div class="d-flex justify-content-center align-items-center">
+        <div
+            class="user-card__media d-flex justify-content-center align-items-center"
+        >
+            <img [src]="urlImage" alt="image" *ngIf="urlImage !== ''" />
+            <mat-icon *ngIf="urlImage === ''">person_outline</mat-icon>
+        </div>
+    </div>
+
+    <div
+        class="user-card__upload d-flex justify-content-between align-items-center mt-3 p-3 pointer"
+        (click)="fileUpload.click()"
+        *ngIf="urlImage === ''"
+    >
+        <ng-container [ngTemplateOutlet]="textTemplate"></ng-container>
+        <mat-icon class="user-card__upload-add">cloud_upload_outline</mat-icon>
+        <input
+            class="d-none"
+            #fileUpload
+            type="file"
+            name="file"
+            id="file"
+            (change)="uploadFile($event)"
+        />
+    </div>
+
+    <div
+        class="user-card__upload d-flex justify-content-between align-items-center mt-3 p-3 pointer"
+        *ngIf="urlImage !== ''"
+    >
+        <ng-container [ngTemplateOutlet]="textTemplate"></ng-container>
+        <mat-icon class="user-card__upload-remove" (click)="removeImage()"
+            >close</mat-icon
+        >
+    </div>
+</div>
+
+<ng-template #textTemplate>
+    <app-poke-text
+        [text]="imageName"
+        fontFamily="MEDIUM"
+        textColor="DARK_BLUE_5"
+/></ng-template>
