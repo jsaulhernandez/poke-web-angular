@@ -101,7 +101,7 @@ export interface Move {
     accuracy: number; //Precisión
     power: number; //poder
     pp: number; //Mostrar PP Max
-    effect_entries: MoveEffect[];
+    effect_entries: Effect[];
     effect_chance: number;
     meta: {
         category: Common;
@@ -110,8 +110,17 @@ export interface Move {
     };
 }
 
-export interface MoveEffect {
+export interface Effect {
     effect: string;
     short_effect: string;
     language: Common;
+}
+
+export interface Item {
+    name: string;
+    category: Common;
+    cost: number;
+    attributes: Common[];
+    effect_entries: Effect[];
+    sprites: { default: string };
 }
