@@ -16,9 +16,9 @@ export const MY_FORMATS = {
 
 export const HOBBIES = [
     'Play Soccer',
-    'Jugar Basquetball',
-    'Jugar Tennis',
-    'Jugar Voleibal',
-    'Jugar Fifa',
-    'Jugar Videojuegos',
+    'Play Basketball',
+    'Play Tennis',
+    'Play Volleyball',
+    'Play Fifa',
+    'Play Video Games',
 ];
