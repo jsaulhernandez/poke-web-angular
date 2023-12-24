@@ -36,4 +36,63 @@
             </mat-select>
         </mat-form-field>
     </div>
+
+    <!-- loading -->
+    <app-poke-loader *ngIf="isLoading | async"></app-poke-loader>
+    <!-- table -->
+    <section
+        class="objects__table mat-elevation-z8 mt-5"
+        tabindex="0"
+        *ngIf="!(isLoading | async)"
+    >
+        <table mat-table [dataSource]="dataSource">
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef>Name</th>
+                <td mat-cell *matCellDef="let element">
+                    <div class="d-flex align-items-center gap-2">
+                        <img [src]="element.image" [alt]="element.name" />
+                        {{ transformItemText(element.name) | titlecase }}
+                    </div>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="short_effect">
+                <th mat-header-cell *matHeaderCellDef>Short Effect</th>
+                <td mat-cell *matCellDef="let element">
+                    {{ element.shortEffect | titlecase }}
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="effect">
+                <th mat-header-cell *matHeaderCellDef>Effect</th>
+                <td mat-cell *matCellDef="let element">
+                    {{ element.effect | titlecase }}
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="attributes">
+                <th mat-header-cell *matHeaderCellDef>Attributes</th>
+                <td mat-cell *matCellDef="let element">
+                    <li *ngFor="let a of element.attributes">
+                        {{ transformItemText(a.name) | titlecase }}
+                    </li>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="category">
+                <th mat-header-cell *matHeaderCellDef>Category</th>
+                <td mat-cell *matCellDef="let element">
+                    {{ transformItemText(element.category) | titlecase }}
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="cost">
+                <th mat-header-cell *matHeaderCellDef>Cost</th>
+                <td mat-cell *matCellDef="let element">
+                    {{ element.cost }}
+                </td>
+            </ng-container>
+
+            <tr
+                mat-header-row
+                *matHeaderRowDef="displayedColumns; sticky: true"
+            ></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+    </section>
 </div>
