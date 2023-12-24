@@ -16,5 +16,10 @@ export const pokeReducer = createReducer(
             ...state,
             user: action.data ?? state.user,
         };
+    }),
+    on(PokeActions.cleanStore, (state, action) => {
+        return {
+            user: {} as User,
+        };
     })
 );

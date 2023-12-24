@@ -12,3 +12,5 @@ export const addUser = createAction(
     PokeActionType.ADD_USER_DATA,
     props<{ data: User }>()
 );
+
+export const cleanStore = createAction(PokeActionType.CLEAN_GLOBAL_STORE);

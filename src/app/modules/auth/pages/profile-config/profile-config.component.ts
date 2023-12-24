@@ -11,7 +11,7 @@ import { Store } from '@ngrx/store';
 import { Image, User } from 'src/app/data/interfaces/user';
 
 import { GlobalState } from 'src/app/store';
-import { addUser } from 'src/app/store/actions/poke.action';
+import { addUser, cleanStore } from 'src/app/store/actions/poke.action';
 
 import { HOBBIES } from 'src/app/data/constants';
 
@@ -64,6 +64,9 @@ export class ProfileConfigComponent {
     onNavigation(action: 'PREVIOUS' | 'NEXT' = 'PREVIOUS') {
         if (action === 'NEXT')
             this.router.navigate(['/poke/auth/select-pokemon']);
-        else this.router.navigate(['/poke/list']);
+        else {
+            this.store.dispatch(cleanStore());
+            this.router.navigate(['/poke/list']);
+        }
     }
 }
