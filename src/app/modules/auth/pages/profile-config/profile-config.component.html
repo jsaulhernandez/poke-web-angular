@@ -75,7 +75,7 @@
                                 userDataForm.invalid ? 'DISABLED' : 'ENABLED'
                             "
                             [widthBreakPoints]="['100%', '50%', '50%']"
-                            (click)="onNext()"
+                            (click)="!userDataForm.invalid && onNext()"
                         />
                     </div>
                 </form>
