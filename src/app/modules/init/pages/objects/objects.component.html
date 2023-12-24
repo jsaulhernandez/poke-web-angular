@@ -1,0 +1,39 @@
+<div class="objects d-flex flex-column py-2 py-md-5">
+    <!-- title -->
+    <div class="d-flex">
+        <app-poke-text
+            text="Objects"
+            fontFamily="BOLD"
+            [fontSizeBreakPoints]="['1.8em', '1.8em', '1.8em']"
+        />
+    </div>
+
+    <!-- filters -->
+    <div
+        class="objects__filter row d-flex align-items-center pt-3 border-bottom"
+    >
+        <mat-form-field class="col-12 col-sm-6 col-md-12 col-lg-4">
+            <mat-label>Search by name</mat-label>
+            <input
+                matInput
+                placeholder="Search by name"
+                [(ngModel)]="searchByName"
+                name="name"
+                (ngModelChange)="filterData()"
+            />
+            <mat-icon matPrefix>search</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="col-12 col-sm-6 col-md-4 col-lg-2">
+            <mat-label>Sort by</mat-label>
+            <mat-select
+                [(ngModel)]="selectedSortBy"
+                name="sort"
+                (ngModelChange)="filterData()"
+            >
+                <mat-option [value]="'NAME_ASC'">Name asc</mat-option>
+                <mat-option [value]="'NAME_DESC'">Name desc</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</div>
