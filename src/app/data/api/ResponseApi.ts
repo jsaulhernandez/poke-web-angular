@@ -93,3 +93,25 @@ export interface EvolutionChain {
         species: Common;
     };
 }
+
+export interface Move {
+    name: string;
+    type: Common;
+    priority: number; //Prioridad
+    accuracy: number; //Precisión
+    power: number; //poder
+    pp: number; //Mostrar PP Max
+    effect_entries: MoveEffect[];
+    effect_chance: number;
+    meta: {
+        category: Common;
+        crit_rate: number; //Radio de crítico
+        flinch_chance: number; //Probabilidad de retroceder
+    };
+}
+
+export interface MoveEffect {
+    effect: string;
+    short_effect: string;
+    language: Common;
+}
