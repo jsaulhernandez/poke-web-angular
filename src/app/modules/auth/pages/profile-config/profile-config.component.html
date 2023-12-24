@@ -1,1 +1,73 @@
-<p>profile-config works!</p>
+<div class="objects d-flex flex-column py-2 py-md-5">
+    <!-- title -->
+    <div class="d-flex gap-2">
+        <mat-icon class="mt-2 pointer" color="primary" (click)="onGoToHome()"
+            >keyboard_arrow_left</mat-icon
+        >
+        <div class="d-flex flex-column">
+            <app-poke-text
+                text="¡Hola! Configuraremos tu perfil"
+                fontFamily="BOLD"
+                [fontSizeBreakPoints]="['1.8em', '1.8em', '1.8em']"
+            />
+            <app-poke-text text="Queremos conocerte mejor" textColor="GRAY" />
+        </div>
+    </div>
+
+    <!-- content -->
+    <div class="row pt-5">
+        <div class="col-2"></div>
+        <div class="col-3">
+            <div class="card__data d-flex flex-column"></div>
+        </div>
+        <div class="col-2"></div>
+        <div class="col-3">
+            <app-poke-text
+                text="Tu información"
+                fontFamily="MEDIUM"
+                [fontSizeBreakPoints]="['1.8em', '1.8em', '1.8em']"
+            />
+            <app-poke-text
+                text="Completa la siguiente información<br/>para completar tu perfil"
+                textColor="GRAY"
+            />
+
+            <!-- form -->
+            <div class="mt-4">
+                <form>
+                    <mat-form-field class="w-100">
+                        <mat-label>Name*</mat-label>
+                        <input matInput />
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Hobbies</mat-label>
+                        <mat-select multiple>
+                            <mat-option
+                                *ngFor="let topping of toppingList"
+                                [value]="topping"
+                                >{{ topping }}</mat-option
+                            >
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Date of Birth*</mat-label>
+                        <input matInput [matDatepicker]="picker" />
+                        <mat-datepicker-toggle
+                            matIconSuffix
+                            [for]="picker"
+                        ></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-form-field class="w-100">
+                        <mat-label>Document number*</mat-label>
+                        <input matInput />
+                    </mat-form-field>
+                </form>
+            </div>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>

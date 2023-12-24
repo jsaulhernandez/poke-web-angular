@@ -14,6 +14,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTableModule } from '@angular/material/table';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
     declarations: [],
@@ -26,6 +28,8 @@ import { MatTableModule } from '@angular/material/table';
         MatTooltipModule,
         MatProgressBarModule,
         MatTableModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
     ],
     exports: [
         CommonModule,
@@ -36,6 +40,8 @@ import { MatTableModule } from '@angular/material/table';
         MatTooltipModule,
         MatProgressBarModule,
         MatTableModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
     ],
     providers: [
         {
