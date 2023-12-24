@@ -3,7 +3,7 @@ export interface User {
     hobbies?: string[];
     dateBirth: string;
     document: string;
-    resource: Image;
+    resource?: Image;
 }
 
 export interface Image {
