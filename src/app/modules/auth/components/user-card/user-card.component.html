@@ -33,11 +33,13 @@
     </div>
 
     <div
-        class="user-card__upload d-flex justify-content-between align-items-center mt-3 p-3 pointer"
+        class="user-card__upload d-flex justify-content-between align-items-center mt-3 p-3"
         *ngIf="urlImage !== ''"
     >
         <ng-container [ngTemplateOutlet]="textTemplate"></ng-container>
-        <mat-icon class="user-card__upload-remove" (click)="removeImage()"
+        <mat-icon
+            class="user-card__upload-remove pointer"
+            (click)="removeImage()"
             >close</mat-icon
         >
     </div>
