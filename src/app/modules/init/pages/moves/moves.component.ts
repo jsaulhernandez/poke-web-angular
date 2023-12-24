@@ -70,7 +70,7 @@ export class MovesComponent implements OnInit, OnDestroy {
     async getDataForEachMove(moves: Common[]) {
         const promises = moves.map(async (m) => {
             let data = {} as CustomMove;
-            // getting data for each pokemon
+            // getting data for each move
             const response = this.api$.getDataPokemonByUrl<Move>(m.url);
             let moveDetail = (await lastValueFrom(response)) ?? ({} as Move);
 
