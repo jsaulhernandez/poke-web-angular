@@ -1,7 +1,7 @@
 export interface User {
     name: string;
     hobbies?: string[];
-    dateBirth: string;
+    dateBirth: Date;
     document: string;
     resource?: Image;
 }
