@@ -1,59 +1,61 @@
-<div class="objects d-flex flex-column py-2 py-md-5">
+<div class="profile-config d-flex flex-column py-2 py-md-5">
     <!-- title -->
     <div class="d-flex gap-2">
-        <mat-icon class="mt-2 pointer" color="primary" (click)="onGoToHome()"
+        <mat-icon class="mt-2 pointer" color="primary" (click)="onNavigation()"
             >keyboard_arrow_left</mat-icon
         >
         <div class="d-flex flex-column">
             <app-poke-text
-                text="¡Hola! Configuraremos tu perfil"
+                text="Hello! We will configure your profile"
                 fontFamily="BOLD"
                 [fontSizeBreakPoints]="['1.8em', '1.8em', '1.8em']"
             />
-            <app-poke-text text="Queremos conocerte mejor" textColor="GRAY" />
+            <app-poke-text text="We want to know you better" textColor="GRAY" />
         </div>
     </div>
 
     <!-- content -->
     <div class="row pt-5">
-        <div class="col-2"></div>
-        <div class="col-3">
-            <div class="card__data d-flex flex-column"></div>
+        <div class="col-0 col-lg-1 col-xl-2 d-none d-lg-block"></div>
+        <div class="col-12 col-md-5 col-lg-4 col-xl-3">
+            <app-user-card (file)="resource = $event" [userData]="userData" />
         </div>
-        <div class="col-2"></div>
-        <div class="col-3">
+        <div class="col-0 col-md-2 d-none d-md-block"></div>
+        <div class="col-12 col-md-5 col-lg-4 col-xl-3 mt-4 mt-md-0">
             <app-poke-text
-                text="Tu información"
+                text="Your information"
                 fontFamily="MEDIUM"
                 [fontSizeBreakPoints]="['1.8em', '1.8em', '1.8em']"
             />
             <app-poke-text
-                text="Completa la siguiente información<br/>para completar tu perfil"
+                text="Complete the following information<br/>to complete your profile"
                 textColor="GRAY"
             />
 
             <!-- form -->
             <div class="mt-4">
-                <form>
+                <form [formGroup]="userDataForm">
                     <mat-form-field class="w-100">
-                        <mat-label>Name*</mat-label>
-                        <input matInput />
+                        <mat-label>Name</mat-label>
+                        <input matInput formControlName="name" />
                     </mat-form-field>
 
-                    <mat-form-field>
+                    <mat-form-field class="w-100">
                         <mat-label>Hobbies</mat-label>
-                        <mat-select multiple>
-                            <mat-option
-                                *ngFor="let topping of toppingList"
-                                [value]="topping"
-                                >{{ topping }}</mat-option
-                            >
+                        <mat-select multiple formControlName="hobbies">
+                            <mat-option *ngFor="let h of hobbies" [value]="h">{{
+                                h
+                            }}</mat-option>
                         </mat-select>
                     </mat-form-field>
 
-                    <mat-form-field>
-                        <mat-label>Date of Birth*</mat-label>
-                        <input matInput [matDatepicker]="picker" />
+                    <mat-form-field class="w-100">
+                        <mat-label>Date of Birth</mat-label>
+                        <input
+                            matInput
+                            [matDatepicker]="picker"
+                            formControlName="dateBirth"
+                        />
                         <mat-datepicker-toggle
                             matIconSuffix
                             [for]="picker"
@@ -62,12 +64,23 @@
                     </mat-form-field>
 
                     <mat-form-field class="w-100">
-                        <mat-label>Document number*</mat-label>
-                        <input matInput />
+                        <mat-label>DUI</mat-label>
+                        <input matInput formControlName="document" />
                     </mat-form-field>
+
+                    <div class="col-12 text-center">
+                        <app-poke-button
+                            [content]="'Continue'"
+                            [typeButton]="
+                                userDataForm.invalid ? 'DISABLED' : 'ENABLED'
+                            "
+                            [widthBreakPoints]="['100%', '50%', '50%']"
+                            (click)="onNext()"
+                        />
+                    </div>
                 </form>
             </div>
         </div>
-        <div class="col-2"></div>
+        <div class="col-0 col-lg-1 col-xl-2 d-none d-lg-block"></div>
     </div>
 </div>

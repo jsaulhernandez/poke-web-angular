@@ -1,5 +1,19 @@
 import { Component } from '@angular/core';
+import {
+    UntypedFormBuilder,
+    UntypedFormGroup,
+    Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+
+import { Image, User } from 'src/app/data/interfaces/user';
+
+import { GlobalState } from 'src/app/store';
+import { addUser } from 'src/app/store/actions/poke.action';
+
+import { HOBBIES } from 'src/app/data/constants';
 
 @Component({
     selector: 'app-profile-config',
@@ -7,18 +21,49 @@ import { Router } from '@angular/router';
     styleUrls: ['./profile-config.component.scss'],
 })
 export class ProfileConfigComponent {
-    toppingList: string[] = [
-        'Extra cheese',
-        'Mushroom',
-        'Onion',
-        'Pepperoni',
-        'Sausage',
-        'Tomato',
-    ];
+    hobbies = HOBBIES;
+    resource?: Image;
+    userData?: User;
+    userDataForm!: UntypedFormGroup;
 
-    constructor(private router: Router) {}
+    subscriber!: Subscription;
 
-    onGoToHome() {
-        this.router.navigate(['/poke/list']);
+    constructor(
+        private router: Router,
+        private fb: UntypedFormBuilder,
+        private store: Store<GlobalState>
+    ) {
+        this.userDataForm = this.fb.group({
+            name: [null, [Validators.required]],
+            hobbies: [[]],
+            dateBirth: [null, [Validators.required]],
+            document: [null, [Validators.required]],
+        });
+
+        this.subscriber = this.store.select('poke').subscribe(({ user }) => {
+            this.userDataForm.patchValue(user);
+            this.userData = user;
+            this.resource = user.resource;
+        });
+    }
+
+    onNext() {
+        const { name, hobbies, dateBirth, document } = this.userDataForm.value;
+        const userData: User = {
+            dateBirth,
+            name,
+            hobbies,
+            document,
+            resource: this.resource,
+        };
+
+        this.store.dispatch(addUser({ data: userData }));
+        this.onNavigation('NEXT');
+    }
+
+    onNavigation(action: 'PREVIOUS' | 'NEXT' = 'PREVIOUS') {
+        if (action === 'NEXT')
+            this.router.navigate(['/poke/auth/select-pokemon']);
+        else this.router.navigate(['/poke/list']);
     }
 }
