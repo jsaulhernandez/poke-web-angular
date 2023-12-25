@@ -84,32 +84,7 @@
                         class="pokemon-detail__content-evolutions__item d-flex flex-row align-items-center gap-3 p-3"
                         [ngClass]="['ele-bg-' + firstElement]"
                     >
-                        <div class="d-flex flex-row align-items-center gap-2">
-                            <img [src]="e.item.url" [alt]="e.item.name" />
-
-                            <div class="d-flex flex-column">
-                                <app-poke-text
-                                    [text]="e.item.name"
-                                    fontFamily="MEDIUM"
-                                    textColor="WHITE"
-                                    [fontSizeBreakPoints]="[
-                                        '1.25em',
-                                        '1.25em',
-                                        '1.25em'
-                                    ]"
-                                />
-                                <app-poke-text
-                                    [text]="e.generation.name"
-                                    fontFamily="REGULAR"
-                                    textColor="WHITE"
-                                    [fontSizeBreakPoints]="[
-                                        '0.875em',
-                                        '0.875em',
-                                        '0.875em'
-                                    ]"
-                                />
-                            </div>
-                        </div>
+                        <app-item-detail [dataEvolution]="e" />
                     </div>
                 </div>
             </div>

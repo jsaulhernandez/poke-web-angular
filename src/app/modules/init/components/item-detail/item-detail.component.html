@@ -1,0 +1,19 @@
+<div class="item-detail d-flex flex-row align-items-center gap-2">
+    <img [src]="dataEvolution.item.url" [alt]="dataEvolution.item.name" />
+
+    <div class="d-flex flex-column">
+        <app-poke-text
+            [text]="dataEvolution.item.name"
+            fontFamily="MEDIUM"
+            textColor="WHITE"
+            [fontSizeBreakPoints]="['1.25em', '1.25em', '1.25em']"
+        />
+
+        <app-poke-text
+            [text]="dataEvolution.generation.name"
+            fontFamily="REGULAR"
+            textColor="WHITE"
+            [fontSizeBreakPoints]="['0.875em', '0.875em', '0.875em']"
+        />
+    </div>
+</div>
