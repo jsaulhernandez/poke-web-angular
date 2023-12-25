@@ -5,6 +5,8 @@ import { Subscription } from 'rxjs';
 
 import { User } from 'src/app/data/interfaces/user';
 
+import { DataPokemon } from 'src/app/data/api/ResponseApi';
+
 import { GlobalState } from 'src/app/store';
 
 @Component({
@@ -14,6 +16,7 @@ import { GlobalState } from 'src/app/store';
 })
 export class UserProfileComponent implements OnInit, OnDestroy {
     userData?: User;
+    selectedPokemons: DataPokemon[] = [];
 
     subscriber!: Subscription;
 
@@ -24,10 +27,17 @@ export class UserProfileComponent implements OnInit, OnDestroy {
             .select('poke')
             .subscribe(({ pokemons, user }) => {
                 this.userData = user;
+                this.selectedPokemons = pokemons;
             });
     }
 
     ngOnDestroy(): void {
         this.subscriber.unsubscribe();
+    }
+
+    onNavigation(option: 'EDIT_PROFILE' | 'EDIT_SELECTED' = 'EDIT_PROFILE') {
+        if (option === 'EDIT_PROFILE')
+            this.router.navigate(['/poke/admin/edit']);
+        else this.router.navigate(['/poke/admin/edit-selected']);
     }
 }
