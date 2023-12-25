@@ -1,5 +1,5 @@
 <button
-    class="btn p-2"
+    class="btn py-2 px-4"
     [ngStyle]="{
         width: customWidth,
         'font-size': fontSize,
@@ -20,5 +20,8 @@
     type="button"
     [disabled]="isDisabled"
 >
-    <span> {{ content }}</span>
+    <div class="d-flex justify-content-center align-items-center gap-2">
+        <mat-icon *ngIf="icon">{{ icon }}</mat-icon>
+        <span>{{ content }}</span>
+    </div>
 </button>

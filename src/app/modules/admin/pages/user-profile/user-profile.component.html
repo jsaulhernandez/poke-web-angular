@@ -12,6 +12,7 @@
                 [fontSizeBreakPoints]="['1.8em', '1.8em', '1.8em']"
             />
             <app-poke-button
+                [icon]="'edit'"
                 [content]="'Edit profile'"
                 [typeButton]="'OUTLINE'"
                 (click)="onNavigation()"
@@ -34,6 +35,7 @@
                     />
 
                     <app-poke-button
+                        [icon]="'edit'"
                         [content]="'Edit'"
                         [typeButton]="'OUTLINE'"
                         (click)="onNavigation('EDIT_SELECTED')"

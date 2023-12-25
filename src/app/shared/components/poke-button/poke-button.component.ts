@@ -9,12 +9,13 @@ import { FontFamily, TypeButton } from 'src/app/data/interfaces/shared';
     styleUrls: ['./poke-button.component.scss'],
 })
 export class PokeButtonComponent {
+    @Input() icon?: string;
     @Input() content: string = '';
     @Input() fontSize: string = '1em';
     @Input() isLoading: boolean = false;
     @Input() isDisabled: boolean = false;
-    @Input() typeButton: TypeButton = 'ENABLED';
     @Input() fontFamily: FontFamily = 'BOLD';
+    @Input() typeButton: TypeButton = 'ENABLED';
     @Input() widthBreakPoints: string[] = ['100%', '100%', '100%'];
 
     customWidth = '100%';
