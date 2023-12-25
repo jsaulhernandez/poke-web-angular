@@ -1,0 +1,52 @@
+<div
+    class="d-flex flex-column align-items-center gap-1"
+    *ngIf="option === 'MEDIA'"
+>
+    <img
+        [src]="pokeData.sprites?.other['official-artwork']?.front_default ?? ''"
+        [alt]="pokeData.name"
+        class="px-5"
+        [ngStyle]="{
+            height: heightImage + 'px'
+        }"
+    />
+    <app-poke-text
+        [text]="pokeData.name"
+        textColor="BLACK"
+        fontFamily="BOLD"
+        [fontSizeBreakPoints]="['1.5em', '1.5em', '1.5em']"
+    />
+    <app-poke-text
+        [text]="processTypes(pokeData.types)"
+        textColor="BLACK"
+        fontFamily="MEDIUM"
+    />
+</div>
+
+<div *ngIf="option === 'STATS'">
+    <div
+        class="row d-flex align-items-center pb-3"
+        *ngFor="let stat of pokeData.stats; let i = index"
+    >
+        <div class="col-4">
+            <app-poke-text
+                [text]="transformStatKey(stat.stat.name)"
+                [fontFamily]="fontFamily"
+                textColor="GRAY"
+            />
+        </div>
+        <div class="col-8 d-flex flex-row align-items-center gap-2">
+            <app-poke-text
+                [text]="stat.base_stat + ''"
+                fontFamily="BOLD"
+                textColor="GRAY"
+                *ngIf="showBaseStat"
+            />
+            <mat-progress-bar
+                mode="determinate"
+                [value]="getStatWidth(i)"
+                [ngClass]="['progress-bar-' + element]"
+            ></mat-progress-bar>
+        </div>
+    </div>
+</div>
