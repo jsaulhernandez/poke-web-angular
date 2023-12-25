@@ -6,9 +6,10 @@
     <!-- stats -->
     <div class="col-12 col-md-7 mt-3 mt-lg-0">
         <app-poke-media
-            [pokeData]="pokeData"
-            [element]="getElement()"
             [option]="'STATS'"
+            [pokeData]="pokeData"
+            [includeShadow]="true"
+            [element]="getElement()"
             fontFamily="MEDIUM"
         />
     </div>

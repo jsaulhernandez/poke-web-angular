@@ -6,10 +6,10 @@
 }
 
 :host ::ng-deep mat-progress-bar {
-    height: 15px;
+    height: 12px;
     border-radius: 10px;
 }
 
 :host ::ng-deep mat-progress-bar .mdc-linear-progress__bar-inner {
-    border-top-width: 15px;
+    border-top-width: 12px;
 }

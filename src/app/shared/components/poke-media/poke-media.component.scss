@@ -1,3 +1,13 @@
 .poke-media {
     text-transform: capitalize;
 }
+
+.poke-stats__item {
+    border: 5px solid #fdfefe;
+    box-shadow: 1px 1px 0px rgba(97, 97, 97, 0.5);
+    border-radius: 10px;
+
+    ::ng-deep .mdc-linear-progress__buffer-bar {
+        background-color: transparent !important;
+    }
+}

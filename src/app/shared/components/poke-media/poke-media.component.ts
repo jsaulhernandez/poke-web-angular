@@ -16,6 +16,7 @@ export class PokeMediaComponent {
     @Input() showBaseStat: boolean = false;
     @Input() fontFamily: FontFamily = 'BOLD';
     @Input() element: string = 'unknown';
+    @Input() includeShadow: boolean = false;
 
     processTypes(types: Type[]): string {
         return types.map((t) => t.type.name).join('/');
