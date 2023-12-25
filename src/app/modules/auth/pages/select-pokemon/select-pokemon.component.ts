@@ -29,9 +29,6 @@ export class SelectPokemonComponent implements OnInit, OnDestroy {
     userData!: User;
     mainList: DataPokemon[] = [];
 
-    // filters
-    searchByName: string = '';
-
     subscriber!: Subscription;
 
     constructor(

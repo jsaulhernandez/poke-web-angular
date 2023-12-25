@@ -14,7 +14,7 @@
         <div class="d-flex row w-100">
             <app-poke-item
                 *cdkVirtualFor="let item of pokemonsFilters; let i = index"
-                class="col-6 col-lg-4"
+                [ngClass]="[customClass]"
                 [ngStyle]="{
                     opacity: generateOpacity(item),
                     'pointer-events':
@@ -33,11 +33,11 @@
 
     <div class="col-12 text-center mt-4">
         <app-poke-button
-            [content]="'Save'"
+            [content]="buttonContent"
             [typeButton]="
                 this.selectedPokemons.length === 3 ? 'ENABLED' : 'DISABLED'
             "
-            [widthBreakPoints]="['100%', '50%', '50%']"
+            [widthBreakPoints]="widthBreakPoints"
             (click)="this.selectedPokemons.length === 3 && sendData()"
         />
     </div>
