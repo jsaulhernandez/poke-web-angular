@@ -22,6 +22,13 @@ const routes: Routes = [
                         (a) => a.AuthModule
                     ),
             },
+            {
+                path: '',
+                loadChildren: () =>
+                    import('./modules/admin/admin.module').then(
+                        (a) => a.AdminModule
+                    ),
+            },
         ],
     },
     { path: '', redirectTo: 'poke/list', pathMatch: 'full' },
