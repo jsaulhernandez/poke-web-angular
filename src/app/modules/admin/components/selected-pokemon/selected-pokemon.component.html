@@ -1,1 +1,15 @@
-<p>selected-pokemon works!</p>
+<div class="selected-pokemon d-flex flex-wrap p-4">
+    <!-- information -->
+    <div class="col-12 col-md-5">
+        <app-poke-media [pokeData]="pokeData" [heightImage]="150" />
+    </div>
+    <!-- stats -->
+    <div class="col-12 col-md-7 mt-3 mt-lg-0">
+        <app-poke-media
+            [pokeData]="pokeData"
+            [element]="getElement()"
+            [option]="'STATS'"
+            fontFamily="MEDIUM"
+        />
+    </div>
+</div>

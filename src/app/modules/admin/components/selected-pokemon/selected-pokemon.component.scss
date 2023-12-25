@@ -1,0 +1,15 @@
+@import "../../../../core/theming/colors.scss";
+
+.selected-pokemon {
+    border-radius: 10px;
+    background-color: $gray-3;
+}
+
+:host ::ng-deep mat-progress-bar {
+    height: 15px;
+    border-radius: 10px;
+}
+
+:host ::ng-deep mat-progress-bar .mdc-linear-progress__bar-inner {
+    border-top-width: 15px;
+}
