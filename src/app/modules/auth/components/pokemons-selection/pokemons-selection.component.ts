@@ -1,24 +1,15 @@
 import {
-    AfterContentChecked,
-    AfterViewChecked,
-    ChangeDetectorRef,
     Component,
     EventEmitter,
     Input,
     OnDestroy,
     OnInit,
     Output,
-    inject,
 } from '@angular/core';
-import { lastValueFrom } from 'rxjs';
 
 import {
-    DataBasePokemon,
     DataPokemon,
-    Specie,
 } from 'src/app/data/api/ResponseApi';
-import { ApiService } from 'src/app/data/services/api.service';
-import { LoaderService } from 'src/app/shared/services/loader.service';
 
 @Component({
     selector: 'app-pokemons-selection',
@@ -27,6 +18,7 @@ import { LoaderService } from 'src/app/shared/services/loader.service';
 })
 export class PokemonsSelectionComponent implements OnInit, OnDestroy {
     @Input() pokemonsList: DataPokemon[] = [];
+    @Input() showItems: number = 3;
     @Output() outputData = new EventEmitter<DataPokemon[]>();
 
     pokemonsFilters: DataPokemon[] = [];

@@ -8,13 +8,14 @@ import { User } from 'src/app/data/interfaces/user';
 import { GlobalState } from 'src/app/store';
 import { addSelectedPokemons } from 'src/app/store/actions/poke.action';
 
+import { ApiService } from 'src/app/data/services/api.service';
+import { LoaderService } from 'src/app/shared/services/loader.service';
+
 import {
     DataBasePokemon,
     DataPokemon,
     Specie,
 } from 'src/app/data/api/ResponseApi';
-import { ApiService } from 'src/app/data/services/api.service';
-import { LoaderService } from 'src/app/shared/services/loader.service';
 
 @Component({
     selector: 'app-select-pokemon',

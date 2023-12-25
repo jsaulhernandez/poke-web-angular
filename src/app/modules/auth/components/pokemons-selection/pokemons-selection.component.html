@@ -10,7 +10,7 @@
         <mat-icon matPrefix>search</mat-icon>
     </mat-form-field>
 
-    <cdk-virtual-scroll-viewport style="height: 300px" itemSize="3">
+    <cdk-virtual-scroll-viewport style="height: 300px" [itemSize]="showItems">
         <div class="d-flex row w-100">
             <app-poke-item
                 *cdkVirtualFor="let item of pokemonsFilters; let i = index"
