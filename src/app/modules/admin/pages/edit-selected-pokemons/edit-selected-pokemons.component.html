@@ -1,0 +1,35 @@
+<div class="row" *ngIf="isLoading | async">
+    <app-poke-loader
+        class="position-absolute top-50 start-50 translate-middle"
+    ></app-poke-loader>
+</div>
+
+<div
+    class="profile-config d-flex flex-column py-2 py-md-5"
+    *ngIf="!(isLoading | async)"
+>
+    <!-- title -->
+    <div class="d-flex gap-2">
+        <mat-icon class="mt-2 pointer" color="primary" (click)="onNavigation()"
+            >keyboard_arrow_left</mat-icon
+        >
+        <div class="d-flex flex-column">
+            <app-poke-text
+                text="Edit selection"
+                fontFamily="BOLD"
+                [fontSizeBreakPoints]="['1.8em', '1.8em', '1.8em']"
+            />
+        </div>
+    </div>
+
+    <!-- pokemons -->
+    <app-pokemons-selection
+        class="pt-5"
+        [customClass]="'col-6 col-sm-4 col-md-3 col-lg-2'"
+        [showItems]="6"
+        [buttonContent]="'Update selection'"
+        [pokemonsList]="mainList"
+        [widthBreakPoints]="['100%', '30%', '30%']"
+        (outputData)="onNext($event)"
+    />
+</div>
