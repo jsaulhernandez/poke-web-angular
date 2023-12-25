@@ -17,6 +17,7 @@ export const pokeReducer = createReducer(
         return {
             ...state,
             user: action.data,
+            pokemons: [],
         };
     }),
     on(PokeActions.addSelectedPokemons, (state, action) => {
