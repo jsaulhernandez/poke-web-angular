@@ -10,6 +10,7 @@ import { DataPokemon } from 'src/app/data/api/ResponseApi';
 export class PokeItemComponent {
     @Input() data!: DataPokemon;
     @Input() showAdditionalData: boolean = false;
+    @Input() isPokemonSelected: boolean = false;
 
     constructor(private router: Router) {}
 

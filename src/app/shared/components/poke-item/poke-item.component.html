@@ -1,12 +1,15 @@
 <div class="poke-item pt-4 pb-2">
     <div
         class="poke-item__content d-flex flex-column p-2 gap-2 pointer"
+        [ngClass]="{
+            'custom-class-selected': isPokemonSelected
+        }"
         [matTooltip]="
             data.data_species.flavor_text_entries.length > 0
                 ? data.data_species.flavor_text_entries[0].flavor_text
                 : 'Without description'
         "
-        (click)="onRedirectToDetail()"
+        (click)="showAdditionalData && onRedirectToDetail()"
     >
         <div class="poke-item__content-media d-flex justify-content-center">
             <img
