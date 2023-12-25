@@ -25,14 +25,11 @@ export class SelectPokemonComponent implements OnInit, OnDestroy {
     api$ = inject(ApiService);
 
     isLoading = this.loader$.loading$;
-    contentLoader = 'Cargando...';
-
     userData!: User;
-    pokemonsList: DataPokemon[] = [];
     mainList: DataPokemon[] = [];
+
     // filters
     searchByName: string = '';
-    selectedPokemons: DataPokemon[] = [];
 
     subscriber!: Subscription;
 
@@ -69,7 +66,6 @@ export class SelectPokemonComponent implements OnInit, OnDestroy {
             const dataBase = (await lastValueFrom(response)).results ?? [];
 
             await this.getDataPokemonByUrl(dataBase);
-            this.pokemonsList = this.mainList;
             this.loader$.hide();
         } catch (error) {
             console.error('[Error]', error);
@@ -115,67 +111,15 @@ export class SelectPokemonComponent implements OnInit, OnDestroy {
         this.mainList = await Promise.all(promises);
     }
 
-    filterData() {
-        if (this.searchByName.trim() !== '') {
-            this.pokemonsList = this.pokemonsList.filter(
-                (p) =>
-                    p.name
-                        .toLocaleLowerCase()
-                        .includes(
-                            this.searchByName.trim().toLocaleLowerCase()
-                        ) ||
-                    p.data_species.pokedex_numbers.find(
-                        (pkn) =>
-                            pkn.entry_number.toString() === this.searchByName
-                    )
-            );
-        } else this.pokemonsList = this.mainList;
-    }
-
-    onSelectedPokemon(pokemon: DataPokemon) {
-        const findPokemon = this.selectedPokemons.find(
-            (pk) => pk.name === pokemon.name
-        );
-
-        if (findPokemon)
-            this.selectedPokemons = this.selectedPokemons.filter(
-                (pk) => pk.name !== findPokemon.name
-            );
-        else this.selectedPokemons.push(pokemon);
-    }
-
-    onVerifiedPokemon(pokemon: DataPokemon) {
-        const result = this.selectedPokemons.find(
-            (pk) => pk.name === pokemon.name
-        );
-
-        return !!result;
-    }
-
-    generateOpacity(pokemon: DataPokemon) {
-        if (this.selectedPokemons.length === 3) {
-            const result = this.selectedPokemons.find(
-                (pk) => pk.name === pokemon.name
-            );
-
-            if (!result) return '0.5';
-        }
-
-        return '1';
-    }
-
-    onNext() {
-        if (this.selectedPokemons.length === 3) {
-            this.loader$.show();
-            this.contentLoader = 'Cargando perfil...';
+    onNext(selectedPokemons: DataPokemon[]) {
+        if (selectedPokemons.length === 3) {
             this.store.dispatch(
                 addSelectedPokemons({
-                    pokemons: this.selectedPokemons,
+                    pokemons: selectedPokemons,
                     isLoggedIn: true,
                 })
             );
 
-            this.loader$.hide();
             this.onNavigation('NEXT');
         } else {
             console.warn('[Empty]', 'Select pokemons');
