@@ -30,7 +30,7 @@
 
     <div class="col-12 text-center">
         <app-poke-button
-            [content]="'Continue'"
+            [content]="buttonContent"
             [typeButton]="userDataForm.invalid ? 'DISABLED' : 'ENABLED'"
             [widthBreakPoints]="['100%', '50%', '50%']"
             (click)="!userDataForm.invalid && onNext()"

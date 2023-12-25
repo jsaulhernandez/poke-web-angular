@@ -21,6 +21,7 @@ import { User } from 'src/app/data/interfaces/user';
 })
 export class SignInFormComponent implements OnInit, OnDestroy {
     @Input() userData?: User;
+    @Input() buttonContent: string = 'Continue';
     @Output() outputData = new EventEmitter<User>();
 
     userDataForm!: UntypedFormGroup;
