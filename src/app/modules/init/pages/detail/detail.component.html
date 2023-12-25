@@ -1,4 +1,13 @@
-<div class="pokemon-detail d-flex flex-column py-2 py-md-5">
+<div class="row" *ngIf="isLoading | async">
+    <app-poke-loader
+        class="position-absolute top-50 start-50 translate-middle"
+    ></app-poke-loader>
+</div>
+
+<div
+    class="pokemon-detail d-flex flex-column py-2 py-md-5"
+    *ngIf="!(isLoading | async)"
+>
     <div
         class="d-flex align-items-center gap-2 pointer"
         (click)="onRedirectToList()"
@@ -11,12 +20,7 @@
         />
     </div>
 
-    <app-poke-loader *ngIf="isLoading | async" />
-
-    <div
-        class="pokemon-detail__content row pt-0 pt-5 w-100"
-        *ngIf="!(isLoading | async)"
-    >
+    <div class="pokemon-detail__content row pt-0 pt-5 w-100">
         <div class="pokemon-detail__content-media col-12 col-lg-4">
             <app-poke-media [pokeData]="pokemon" />
         </div>
