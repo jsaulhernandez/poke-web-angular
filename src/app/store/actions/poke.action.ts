@@ -7,6 +7,7 @@ enum PokeActionType {
     ADD_USER_DATA = '[App Component] Add User Data',
     ADD_SELECTED_POKEMONS = '[App Component] UAdd Selected Pokemons',
     UPDATE_USER_DATA = '[App Component] Update User Data',
+    UPDATE_SELECTED_POKEMONS = '[App Component] Update Selected Pokemons',
     CLEAN_GLOBAL_STORE = '[App Component] Clean Global Store',
 }
 
@@ -22,7 +23,12 @@ export const addSelectedPokemons = createAction(
 
 export const updateUserData = createAction(
     PokeActionType.UPDATE_USER_DATA,
-    props<{ data: User; pokemons: DataPokemon[] }>()
+    props<{ data: User }>()
+);
+
+export const updateSelectedPokemons = createAction(
+    PokeActionType.UPDATE_SELECTED_POKEMONS,
+    props<{ pokemons: DataPokemon[] }>()
 );
 
 export const cleanStore = createAction(PokeActionType.CLEAN_GLOBAL_STORE);

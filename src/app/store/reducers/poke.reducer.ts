@@ -16,21 +16,26 @@ export const pokeReducer = createReducer(
     on(PokeActions.addUser, (state, action) => {
         return {
             ...state,
-            user: action.data ?? state.user,
+            user: action.data,
         };
     }),
     on(PokeActions.addSelectedPokemons, (state, action) => {
         return {
             ...state,
-            pokemons: action.pokemons ?? state.pokemons,
+            pokemons: action.pokemons,
             isLoggedIn: action.isLoggedIn,
         };
     }),
     on(PokeActions.updateUserData, (state, action) => {
         return {
             ...state,
-            pokemons: action.pokemons ?? state.pokemons,
             user: action.data ?? state.user,
+        };
+    }),
+    on(PokeActions.updateSelectedPokemons, (state, action) => {
+        return {
+            ...state,
+            pokemons: action.pokemons ?? state.pokemons,
         };
     }),
     on(PokeActions.cleanStore, (state, action) => {
