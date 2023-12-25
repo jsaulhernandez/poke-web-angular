@@ -168,54 +168,6 @@ export class DetailComponent implements OnInit, OnDestroy {
         this.pokemon = data;
     }
 
-    processTypes(types: Type[]): string {
-        return types.map((t) => t.type.name).join('/');
-    }
-
-    transformStatKey(value: string) {
-        switch (value) {
-            case 'hp':
-                return 'HP';
-            case 'attack':
-                return 'Attack';
-            case 'defense':
-                return 'Defense';
-            case 'special-attack':
-                return 'Special Attack';
-            case 'special-defense':
-                return 'Special Defense';
-
-            default:
-                return 'Speed';
-        }
-    }
-
-    getStatWidth(i: number) {
-        let total = 0;
-        switch (i) {
-            case 0:
-                total = 255;
-                break;
-            case 1:
-                total = 190;
-                break;
-            case 2:
-                total = 250;
-                break;
-            case 3:
-                total = 194;
-                break;
-            case 4:
-                total = 250;
-                break;
-            case 5:
-                total = 200;
-                break;
-        }
-
-        return (this.pokemon.stats[i].base_stat / total) * 100;
-    }
-
     transformMovesKey(moves: Move[]) {
         return moves.map((m) => {
             return m.move.name.replace('-', ' ');

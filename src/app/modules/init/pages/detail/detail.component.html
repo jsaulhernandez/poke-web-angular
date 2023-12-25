@@ -17,28 +17,8 @@
         class="pokemon-detail__content row pt-0 pt-5 w-100"
         *ngIf="!(isLoading | async)"
     >
-        <div
-            class="pokemon-detail__content-media d-flex flex-column align-items-center col-12 col-lg-4 gap-1"
-        >
-            <img
-                [src]="
-                    pokemon.sprites?.other['official-artwork']?.front_default ??
-                    ''
-                "
-                [alt]="pokemon.name"
-                class="px-5"
-            />
-            <app-poke-text
-                [text]="pokemon.name"
-                textColor="BLACK"
-                fontFamily="BOLD"
-                [fontSizeBreakPoints]="['1.5em', '1.5em', '1.5em']"
-            />
-            <app-poke-text
-                [text]="processTypes(pokemon.types)"
-                textColor="BLACK"
-                fontFamily="MEDIUM"
-            />
+        <div class="pokemon-detail__content-media col-12 col-lg-4">
+            <app-poke-media [pokeData]="pokemon" />
         </div>
 
         <div class="col-12 col-lg-8">
@@ -50,32 +30,12 @@
                         textColor="GRAY"
                         [fontSizeBreakPoints]="['1.5em', '1.5em', '1.5em']"
                     />
-                    <div
-                        class="row d-flex align-items-center pb-3"
-                        *ngFor="let stat of pokemon.stats; let i = index"
-                    >
-                        <div class="col-4">
-                            <app-poke-text
-                                [text]="transformStatKey(stat.stat.name)"
-                                fontFamily="BOLD"
-                                textColor="GRAY"
-                            />
-                        </div>
-                        <div
-                            class="col-8 d-flex flex-row align-items-center gap-2"
-                        >
-                            <app-poke-text
-                                [text]="stat.base_stat + ''"
-                                fontFamily="BOLD"
-                                textColor="GRAY"
-                            />
-                            <mat-progress-bar
-                                mode="determinate"
-                                [value]="getStatWidth(i)"
-                                [ngClass]="['progress-bar-' + firstElement]"
-                            ></mat-progress-bar>
-                        </div>
-                    </div>
+                    <app-poke-media
+                        [pokeData]="pokemon"
+                        [option]="'STATS'"
+                        [showBaseStat]="true"
+                        [element]="firstElement"
+                    />
                 </div>
 
                 <div class="pokemon-detail__content-moves col-12 col-lg-6">
