@@ -7,6 +7,8 @@ import { User } from 'src/app/data/interfaces/user';
 
 const pokeInitialState: PokeState = {
     user: {} as User,
+    pokemons: [],
+    isLoggedIn: false,
 };
 
 export const pokeReducer = createReducer(
@@ -17,9 +19,25 @@ export const pokeReducer = createReducer(
             user: action.data ?? state.user,
         };
     }),
+    on(PokeActions.addSelectedPokemons, (state, action) => {
+        return {
+            ...state,
+            pokemons: action.pokemons ?? state.pokemons,
+            isLoggedIn: action.isLoggedIn,
+        };
+    }),
+    on(PokeActions.updateUserData, (state, action) => {
+        return {
+            ...state,
+            pokemons: action.pokemons ?? state.pokemons,
+            user: action.data ?? state.user,
+        };
+    }),
     on(PokeActions.cleanStore, (state, action) => {
         return {
             user: {} as User,
+            pokemons: [],
+            isLoggedIn: false,
         };
     })
 );
