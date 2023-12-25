@@ -27,13 +27,14 @@
                 [fontSizeBreakPoints]="['1.8em', '1.8em', '1.8em']"
             />
             <app-poke-text
-                text="Modify the following information if<br/> necessary"
+                text="Update the following information if<br/> necessary"
                 textColor="GRAY"
             />
 
             <!-- form -->
             <div class="mt-4">
                 <app-sign-in-form
+                    [buttonContent]="'Update'"
                     [userData]="userData"
                     (outputData)="onNext($event)"
                 />
