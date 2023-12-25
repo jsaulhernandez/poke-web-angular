@@ -16,7 +16,6 @@ import { HOBBIES } from 'src/app/data/constants';
     styleUrls: ['./profile-config.component.scss'],
 })
 export class ProfileConfigComponent {
-    hobbies = HOBBIES;
     resource?: Image;
     userData?: User;
 

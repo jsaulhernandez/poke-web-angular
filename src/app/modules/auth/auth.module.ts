@@ -9,5 +9,6 @@ import * as auth from './index';
 @NgModule({
     declarations: [...auth.AUTH_MODULE],
     imports: [CommonModule, AuthRoutingModule, SharedModule],
+    exports: [...auth.AUTH_MODULE],
 })
 export class AuthModule {}
