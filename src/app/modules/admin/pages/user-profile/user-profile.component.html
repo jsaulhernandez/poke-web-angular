@@ -1,1 +1,45 @@
-<p>user-profile works!</p>
+<div class="user-profile d-flex flex-column py-2 py-md-5">
+    <!-- content -->
+    <div class="row mt-5">
+        <!-- title -->
+
+        <div class="col-0 col-lg-1 d-none d-lg-block"></div>
+        <div class="col-12 col-lg-11 d-flex flex-wrap gap-4">
+            <app-poke-text
+                text="Hi! Saúl"
+                fontFamily="BOLD"
+                textColor="BLACK"
+                [fontSizeBreakPoints]="['1.8em', '1.8em', '1.8em']"
+            />
+            <app-poke-button
+                [content]="'Edit profile'"
+                [typeButton]="'OUTLINE'"
+            />
+        </div>
+
+        <!-- content -->
+        <div class="row mt-5">
+            <div class="col-0 col-lg-1 d-none d-lg-block"></div>
+            <div class="col-12 col-md-5 col-lg-4 col-xl-3">
+                <app-user-card [userData]="userData" [option]="'SHOW'" />
+            </div>
+            <div
+                class="col-0 col-md-2 col-lg-1 col-xl-2 d-none d-md-block"
+            ></div>
+            <div class="col-12 col-md-5 col-lg-5 mt-4 mt-md-0">
+                <div class="d-flex flex-wrap justify-content-between gap-4">
+                    <app-poke-text
+                        text="My Pokemons"
+                        fontFamily="MEDIUM"
+                        [fontSizeBreakPoints]="['1.8em', '1.8em', '1.8em']"
+                    />
+
+                    <app-poke-button
+                        [content]="'Edit'"
+                        [typeButton]="'OUTLINE'"
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

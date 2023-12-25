@@ -2,6 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
+
+import { User } from 'src/app/data/interfaces/user';
+
 import { GlobalState } from 'src/app/store';
 
 @Component({
@@ -10,6 +13,8 @@ import { GlobalState } from 'src/app/store';
     styleUrls: ['./user-profile.component.scss'],
 })
 export class UserProfileComponent implements OnInit, OnDestroy {
+    userData?: User;
+
     subscriber!: Subscription;
 
     constructor(private router: Router, private store: Store<GlobalState>) {}
@@ -18,7 +23,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
         this.subscriber = this.store
             .select('poke')
             .subscribe(({ pokemons, user }) => {
-                console.log(pokemons, user);
+                this.userData = user;
             });
     }
 
