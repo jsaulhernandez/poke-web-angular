@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-poke-loader',
-  templateUrl: './poke-loader.component.html',
-  styleUrls: ['./poke-loader.component.scss']
+    selector: 'app-poke-loader',
+    templateUrl: './poke-loader.component.html',
+    styleUrls: ['./poke-loader.component.scss'],
 })
 export class PokeLoaderComponent {
-
+    @Input() content: string = 'Cargando...';
 }
