@@ -34,51 +34,10 @@
 
             <!-- form -->
             <div class="mt-4">
-                <form [formGroup]="userDataForm">
-                    <mat-form-field class="w-100">
-                        <mat-label>Name</mat-label>
-                        <input matInput formControlName="name" />
-                    </mat-form-field>
-
-                    <mat-form-field class="w-100">
-                        <mat-label>Hobbies</mat-label>
-                        <mat-select multiple formControlName="hobbies">
-                            <mat-option *ngFor="let h of hobbies" [value]="h">{{
-                                h
-                            }}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-
-                    <mat-form-field class="w-100">
-                        <mat-label>Date of Birth</mat-label>
-                        <input
-                            matInput
-                            [matDatepicker]="picker"
-                            formControlName="dateBirth"
-                        />
-                        <mat-datepicker-toggle
-                            matIconSuffix
-                            [for]="picker"
-                        ></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-                    </mat-form-field>
-
-                    <mat-form-field class="w-100">
-                        <mat-label>DUI</mat-label>
-                        <input matInput formControlName="document" />
-                    </mat-form-field>
-
-                    <div class="col-12 text-center">
-                        <app-poke-button
-                            [content]="'Continue'"
-                            [typeButton]="
-                                userDataForm.invalid ? 'DISABLED' : 'ENABLED'
-                            "
-                            [widthBreakPoints]="['100%', '50%', '50%']"
-                            (click)="!userDataForm.invalid && onNext()"
-                        />
-                    </div>
-                </form>
+                <app-sign-in-form
+                    [userData]="userData"
+                    (outputData)="onNext($event)"
+                />
             </div>
         </div>
         <div class="col-0 col-lg-1 col-xl-2 d-none d-lg-block"></div>

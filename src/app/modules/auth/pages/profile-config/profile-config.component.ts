@@ -1,9 +1,4 @@
 import { Component } from '@angular/core';
-import {
-    UntypedFormBuilder,
-    UntypedFormGroup,
-    Validators,
-} from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
@@ -24,36 +19,19 @@ export class ProfileConfigComponent {
     hobbies = HOBBIES;
     resource?: Image;
     userData?: User;
-    userDataForm!: UntypedFormGroup;
 
     subscriber!: Subscription;
 
-    constructor(
-        private router: Router,
-        private fb: UntypedFormBuilder,
-        private store: Store<GlobalState>
-    ) {
-        this.userDataForm = this.fb.group({
-            name: [null, [Validators.required]],
-            hobbies: [[]],
-            dateBirth: [null, [Validators.required]],
-            document: [null, [Validators.required]],
-        });
-
+    constructor(private router: Router, private store: Store<GlobalState>) {
         this.subscriber = this.store.select('poke').subscribe(({ user }) => {
-            this.userDataForm.patchValue(user);
             this.userData = user;
             this.resource = user.resource;
         });
     }
 
-    onNext() {
-        const { name, hobbies, dateBirth, document } = this.userDataForm.value;
+    onNext(user: User) {
         const userData: User = {
-            dateBirth,
-            name,
-            hobbies,
-            document,
+            ...user,
             resource: this.resource,
         };
 
