@@ -38,7 +38,7 @@
         <div class="col-8 d-flex flex-row align-items-center gap-2">
             <app-poke-text
                 [text]="stat.base_stat + ''"
-                fontFamily="BOLD"
+                [fontFamily]="fontFamily"
                 textColor="GRAY"
                 *ngIf="showBaseStat"
             />
