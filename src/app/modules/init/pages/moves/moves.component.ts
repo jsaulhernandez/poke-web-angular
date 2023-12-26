@@ -7,6 +7,7 @@ import { Common, Move } from 'src/app/data/api/ResponseApi';
 import { ApiService } from 'src/app/data/services/api.service';
 import { LoaderService } from 'src/app/shared/services/loader.service';
 import { SortBy } from 'src/app/data/interfaces/shared';
+import { PATHS } from 'src/app/data/constants';
 
 @Component({
     selector: 'app-moves',
@@ -42,8 +43,8 @@ export class MovesComponent implements OnInit, OnDestroy {
     constructor(private loader$: LoaderService) {}
 
     async ngOnInit(): Promise<void> {
-        this.getCommonData('TYPES', 'type');
-        this.getCommonData('CATEGORIES', 'move-category');
+        this.getCommonData('TYPES', PATHS.TYPE);
+        this.getCommonData('CATEGORIES', PATHS.MOVE_CATEGORY);
         this.getAllMoves();
     }
 
@@ -54,7 +55,7 @@ export class MovesComponent implements OnInit, OnDestroy {
         try {
             const response = this.api$.request<Common[]>({
                 method: 'GET',
-                path: 'move',
+                path: PATHS.MOVE,
             });
 
             const dataBase = (await lastValueFrom(response)).results ?? [];

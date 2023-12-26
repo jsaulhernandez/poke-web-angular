@@ -13,6 +13,7 @@ import { ApiService } from 'src/app/data/services/api.service';
 import { LoaderService } from 'src/app/shared/services/loader.service';
 
 import { SortBy } from 'src/app/data/interfaces/shared';
+import { PATHS } from 'src/app/data/constants';
 
 @Component({
     selector: 'app-list',
@@ -44,10 +45,10 @@ export class ListComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.getAllPokemons();
-        this.getCommonData('GENERATIONS', 'generation');
-        this.getCommonData('VERSIONS', 'version');
-        this.getCommonData('TYPES', 'type');
-        this.getCommonData('ABILITIES', 'ability');
+        this.getCommonData('GENERATIONS', PATHS.GENERATION);
+        this.getCommonData('VERSIONS', PATHS.VERSION);
+        this.getCommonData('TYPES', PATHS.TYPE);
+        this.getCommonData('ABILITIES', PATHS.ABILITY);
     }
 
     ngOnDestroy(): void {}
@@ -57,7 +58,7 @@ export class ListComponent implements OnInit, OnDestroy {
         try {
             const response = this.api$.request<DataBasePokemon[]>({
                 method: 'GET',
-                path: 'pokemon',
+                path: PATHS.POKEMON,
                 params: {
                     limit: `${limit}`,
                     offset: `${offset}`,

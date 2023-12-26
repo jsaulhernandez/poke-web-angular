@@ -22,3 +22,17 @@ export const HOBBIES = [
     'Play Fifa',
     'Play Video Games',
 ];
+
+const TOTAL_POKEMONS = 100000;
+
+export const enum PATHS {
+    POKEMON = 'pokemon',
+    GENERATION = 'generation',
+    VERSION = 'version',
+    TYPE = 'type',
+    ABILITY = 'ability',
+    MOVE = 'move',
+    MOVE_CATEGORY = 'move-category',
+    ITEM = 'item',
+    POKEMON_SPECIES = 'pokemon-species',
+}

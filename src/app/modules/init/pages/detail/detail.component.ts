@@ -7,12 +7,13 @@ import {
     EvolutionChain,
     Move,
     Specie,
-    Type,
 } from 'src/app/data/api/ResponseApi';
 import { Evolution } from 'src/app/data/interfaces/evolution';
 
 import { ApiService } from 'src/app/data/services/api.service';
 import { LoaderService } from 'src/app/shared/services/loader.service';
+
+import { PATHS } from 'src/app/data/constants';
 
 @Component({
     selector: 'app-detail',
@@ -48,7 +49,7 @@ export class DetailComponent implements OnInit, OnDestroy {
         try {
             const dataBase = await this.getDataPokemon<DataPokemon>(
                 pokemonName,
-                'pokemon'
+                PATHS.POKEMON
             );
             await this.getOtherData(dataBase);
 
@@ -95,11 +96,11 @@ export class DetailComponent implements OnInit, OnDestroy {
         const firstID = dataEvolution.chain.species.url.split('/')[6];
         const firstDataPokemon = await this.getDataPokemon<DataPokemon>(
             firstID,
-            'pokemon'
+            PATHS.POKEMON
         );
         const firstSpecie = await this.getDataPokemon<Specie>(
             firstID,
-            'pokemon-species'
+            PATHS.POKEMON_SPECIES
         );
 
         this.evolutions.push({
@@ -119,11 +120,11 @@ export class DetailComponent implements OnInit, OnDestroy {
             const secondID = secondDataEvolution.url.split('/')[6];
             const secondDataPokemon = await this.getDataPokemon<DataPokemon>(
                 secondID,
-                'pokemon'
+                PATHS.POKEMON
             );
             const secondSpecie = await this.getDataPokemon<Specie>(
                 firstID,
-                'pokemon-species'
+                PATHS.POKEMON_SPECIES
             );
 
             this.evolutions.push({
@@ -143,11 +144,11 @@ export class DetailComponent implements OnInit, OnDestroy {
                 const thirdID = thirdDataEvolution.url.split('/')[6];
                 const thirdDataPokemon = await this.getDataPokemon<DataPokemon>(
                     thirdID,
-                    'pokemon'
+                    PATHS.POKEMON
                 );
                 const thirdSpecie = await this.getDataPokemon<Specie>(
                     firstID,
-                    'pokemon-species'
+                    PATHS.POKEMON_SPECIES
                 );
 
                 this.evolutions.push({

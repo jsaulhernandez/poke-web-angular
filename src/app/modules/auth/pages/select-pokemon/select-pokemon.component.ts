@@ -16,6 +16,7 @@ import {
     DataPokemon,
     Specie,
 } from 'src/app/data/api/ResponseApi';
+import { PATHS } from 'src/app/data/constants';
 
 @Component({
     selector: 'app-select-pokemon',
@@ -54,7 +55,7 @@ export class SelectPokemonComponent implements OnInit, OnDestroy {
         try {
             const response = this.api$.request<DataBasePokemon[]>({
                 method: 'GET',
-                path: 'pokemon',
+                path: PATHS.POKEMON,
                 params: {
                     limit: `${limit}`,
                     offset: `${offset}`,

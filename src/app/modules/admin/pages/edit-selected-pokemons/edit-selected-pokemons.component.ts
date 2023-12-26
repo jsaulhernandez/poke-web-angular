@@ -11,6 +11,7 @@ import { CommonService } from 'src/app/data/services/common.service';
 import { LoaderService } from 'src/app/shared/services/loader.service';
 
 import { DataBasePokemon, DataPokemon } from 'src/app/data/api/ResponseApi';
+import { PATHS } from 'src/app/data/constants';
 
 @Component({
     selector: 'app-edit-selected-pokemons',
@@ -39,7 +40,7 @@ export class EditSelectedPokemonsComponent implements OnInit {
         try {
             const response = this.api$.request<DataBasePokemon[]>({
                 method: 'GET',
-                path: 'pokemon',
+                path: PATHS.POKEMON,
                 params: {
                     limit: `${limit}`,
                     offset: `${offset}`,

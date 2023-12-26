@@ -8,6 +8,7 @@ import { ApiService } from 'src/app/data/services/api.service';
 import { LoaderService } from 'src/app/shared/services/loader.service';
 
 import { SortBy } from 'src/app/data/interfaces/shared';
+import { PATHS } from 'src/app/data/constants';
 
 @Component({
     selector: 'app-objects',
@@ -47,7 +48,7 @@ export class ObjectsComponent implements OnInit, OnDestroy {
         try {
             const response = this.api$.request<Common[]>({
                 method: 'GET',
-                path: 'item',
+                path: PATHS.ITEM,
             });
 
             const dataBase = (await lastValueFrom(response)).results ?? [];
