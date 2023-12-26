@@ -1,0 +1,10 @@
+@import "../../../../core/theming/colors.scss";
+
+.home {
+    color: $dark-blue-2;
+
+    img {
+        width: 100%;
+        max-width: 400px;
+    }
+}

@@ -1,0 +1,24 @@
+<div class="position-absolute top-50 start-50 translate-middle">
+    <div
+        class="home d-flex flex-column align-items-center justify-content-center text-center mt-3"
+    >
+        <img src="assets/images/logo.png" alt="logo" />
+        <app-poke-text
+            text="Welcome to our pokemons web app!"
+            fontFamily="BOLD"
+            [fontSizeBreakPoints]="['2em', '2.5em', '3em']"
+        />
+
+        <div class="d-flex align-items-center gap-1">
+            <app-poke-text text="First" />
+            <app-poke-text
+                text="let’s config your profile"
+                fontFamily="BOLD"
+                textColor="DARK_BLUE_5"
+                class="pointer"
+                (click)="configProfile()"
+            />
+            <mat-icon>tag_faces</mat-icon>
+        </div>
+    </div>
+</div>
