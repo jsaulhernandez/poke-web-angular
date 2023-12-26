@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { LayoutComponent } from './layout/layout.component';
+import { NotFoundComponent } from './modules/init/pages/not-found/not-found.component';
 
 const routes: Routes = [
     {
@@ -32,6 +33,7 @@ const routes: Routes = [
         ],
     },
     { path: '', redirectTo: 'poke/list', pathMatch: 'full' },
+    { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({
