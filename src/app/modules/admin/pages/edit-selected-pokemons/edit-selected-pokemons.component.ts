@@ -7,13 +7,10 @@ import { GlobalState } from 'src/app/store';
 import { updateSelectedPokemons } from 'src/app/store/actions/poke.action';
 
 import { ApiService } from 'src/app/data/services/api.service';
+import { CommonService } from 'src/app/data/services/common.service';
 import { LoaderService } from 'src/app/shared/services/loader.service';
 
-import {
-    DataBasePokemon,
-    DataPokemon,
-    Specie,
-} from 'src/app/data/api/ResponseApi';
+import { DataBasePokemon, DataPokemon } from 'src/app/data/api/ResponseApi';
 
 @Component({
     selector: 'app-edit-selected-pokemons',
@@ -22,6 +19,7 @@ import {
 })
 export class EditSelectedPokemonsComponent implements OnInit {
     api$ = inject(ApiService);
+    common$ = inject(CommonService);
 
     isLoading = this.loader$.loading$;
     mainList: DataPokemon[] = [];
@@ -50,50 +48,12 @@ export class EditSelectedPokemonsComponent implements OnInit {
 
             const dataBase = (await lastValueFrom(response)).results ?? [];
 
-            await this.getDataPokemonByUrl(dataBase);
+            this.mainList = await this.common$.getDataPokemonByUrl(dataBase);
             this.loader$.hide();
         } catch (error) {
             console.error('[Error]', error);
             this.loader$.hide();
         }
-    }
-
-    async getDataPokemonByUrl(data: DataBasePokemon[]) {
-        const promises = data.map(async (pokemon) => {
-            // getting data for each pokemon
-            const response = this.api$.getDataPokemonByUrl<DataPokemon>(
-                pokemon.url
-            );
-            let data = (await lastValueFrom(response)) ?? ({} as DataPokemon);
-
-            // getting specie for each pokemon
-            const responseSpecie = this.api$.getDataPokemonByUrl<Specie>(
-                data.species.url
-            );
-            let dataSpecie =
-                (await lastValueFrom(responseSpecie)) ?? ({} as Specie);
-
-            // filtering entries by en
-            dataSpecie = {
-                ...dataSpecie,
-                flavor_text_entries: dataSpecie.flavor_text_entries.filter(
-                    (s) => s.language.name === 'en'
-                ),
-                pokedex_numbers: dataSpecie.pokedex_numbers.filter(
-                    (pn) => pn.pokedex.name === 'national'
-                ),
-            };
-
-            // adding result to pokemon data
-            data = {
-                ...data,
-                data_species: dataSpecie,
-            };
-
-            return data;
-        });
-
-        this.mainList = await Promise.all(promises);
     }
 
     onNext(selectedPokemons: DataPokemon[]) {
