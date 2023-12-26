@@ -43,7 +43,7 @@ export class ProfileConfigComponent {
             this.router.navigate(['/poke/auth/select-pokemon']);
         else {
             this.store.dispatch(cleanStore());
-            this.router.navigate(['/poke/list']);
+            this.router.navigate(['/poke/home']);
         }
     }
 }
