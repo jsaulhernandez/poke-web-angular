@@ -50,9 +50,12 @@ export class NavbarComponent implements OnInit, OnDestroy {
         this.subscriber = this.store
             .select('poke')
             .subscribe(({ user, isLoggedIn }) => {
-                this.userData = user;
-                this.isLoggedIn = isLoggedIn;
-                this.firstName = user.name.split(' ')[0];
+                if (user.dateBirth) {
+                    let arrayName = user.name.split(' ');
+                    this.userData = user;
+                    this.isLoggedIn = isLoggedIn;
+                    this.firstName = arrayName.length > 0 ? arrayName[0] : '-';
+                }
             });
     }
 
