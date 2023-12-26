@@ -3,11 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { LayoutComponent } from './layout/layout.component';
 import { NotFoundComponent } from './modules/init/pages/not-found/not-found.component';
+import { authGuard } from './core/guard/auth.guard';
 
 const routes: Routes = [
     {
         path: 'poke',
         component: LayoutComponent,
+        canActivateChild: [authGuard],
         children: [
             {
                 path: '',
@@ -32,7 +34,7 @@ const routes: Routes = [
             },
         ],
     },
-    { path: '', redirectTo: 'poke/list', pathMatch: 'full' },
+    { path: '', redirectTo: 'poke/home', pathMatch: 'full' },
     { path: '**', component: NotFoundComponent },
 ];
 
