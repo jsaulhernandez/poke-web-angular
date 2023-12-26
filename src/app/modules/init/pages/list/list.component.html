@@ -22,12 +22,14 @@
             <mat-select
                 [(ngModel)]="selectedGeneration"
                 name="generation"
-                (ngModelChange)="getPokemonsByGeneration()"
+                (ngModelChange)="filterData()"
             >
                 <mat-option [value]="'ALL'">All generations</mat-option>
-                <mat-option *ngFor="let gen of generations" [value]="gen.url">{{
-                    gen.name | titlecase
-                }}</mat-option>
+                <mat-option
+                    *ngFor="let gen of generations"
+                    [value]="gen.name"
+                    >{{ gen.name | titlecase }}</mat-option
+                >
             </mat-select>
         </mat-form-field>
 

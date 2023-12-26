@@ -131,9 +131,11 @@ export class ListComponent implements OnInit, OnDestroy {
         if (this.selectedGeneration === 'ALL')
             this.pokemonsList = this.mainList;
         else
-            this.pokemonsList = this.mainList.filter((p) => {
-                return this.dataBasePokemon.find((p2) => p2.name === p.name);
-            });
+            this.pokemonsList = this.mainList.filter(
+                (p) =>
+                    p.data_species.generation.name.toLocaleLowerCase() ===
+                    this.selectedGeneration.toLocaleLowerCase()
+            );
 
         // filter data by version
         if (this.selectedVersion !== 'ALL') {
