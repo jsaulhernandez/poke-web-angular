@@ -126,6 +126,6 @@ export class SelectPokemonComponent implements OnInit, OnDestroy {
 
     onNavigation(action: 'PREVIOUS' | 'NEXT' = 'PREVIOUS') {
         if (action === 'NEXT') this.router.navigate(['/poke/admin/profile']);
-        else this.router.navigate(['/poke/auth/profile-config']);
+        else this.router.navigate(['/poke/auth/config-profile']);
     }
 }

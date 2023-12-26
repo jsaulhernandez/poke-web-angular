@@ -5,7 +5,7 @@ import { ProfileConfigComponent } from './pages/profile-config/profile-config.co
 import { SelectPokemonComponent } from './pages/select-pokemon/select-pokemon.component';
 
 const routes: Routes = [
-    { path: 'auth/profile-config', component: ProfileConfigComponent },
+    { path: 'auth/config-profile', component: ProfileConfigComponent },
     { path: 'auth/select-pokemon', component: SelectPokemonComponent },
 ];
 
