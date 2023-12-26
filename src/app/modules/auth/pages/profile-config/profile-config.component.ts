@@ -8,8 +8,6 @@ import { Image, User } from 'src/app/data/interfaces/user';
 import { GlobalState } from 'src/app/store';
 import { addUser, cleanStore } from 'src/app/store/actions/poke.action';
 
-import { HOBBIES } from 'src/app/data/constants';
-
 @Component({
     selector: 'app-profile-config',
     templateUrl: './profile-config.component.html',
