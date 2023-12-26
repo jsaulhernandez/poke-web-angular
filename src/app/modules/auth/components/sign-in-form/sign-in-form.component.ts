@@ -26,8 +26,16 @@ export class SignInFormComponent implements OnInit, OnDestroy {
 
     userDataForm!: UntypedFormGroup;
     hobbies = HOBBIES;
+    maxDob!: Date;
 
     constructor(private fb: UntypedFormBuilder) {
+        const today = new Date();
+        this.maxDob = new Date(
+            today.getFullYear() - 12, // only 12 years old
+            today.getMonth(),
+            today.getDate()
+        );
+
         this.userDataForm = this.fb.group({
             name: [null, [Validators.required]],
             hobbies: [[]],
