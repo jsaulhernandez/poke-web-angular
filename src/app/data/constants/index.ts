@@ -23,7 +23,7 @@ export const HOBBIES = [
     'Play Video Games',
 ];
 
-const TOTAL_POKEMONS = 100000;
+export const TOTAL_POKEMONS = 100;
 
 export const enum PATHS {
     POKEMON = 'pokemon',

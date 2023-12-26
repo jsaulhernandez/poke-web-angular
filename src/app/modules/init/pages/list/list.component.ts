@@ -6,7 +6,6 @@ import {
     DataBasePokemon,
     DataPokemon,
     Generation,
-    Specie,
 } from 'src/app/data/api/ResponseApi';
 
 import { ApiService } from 'src/app/data/services/api.service';
@@ -14,7 +13,7 @@ import { CommonService } from 'src/app/data/services/common.service';
 import { LoaderService } from 'src/app/shared/services/loader.service';
 
 import { SortBy } from 'src/app/data/interfaces/shared';
-import { PATHS } from 'src/app/data/constants';
+import { PATHS, TOTAL_POKEMONS } from 'src/app/data/constants';
 
 @Component({
     selector: 'app-list',
@@ -55,7 +54,7 @@ export class ListComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {}
 
-    async getAllPokemons(limit = 50, offset = 0) {
+    async getAllPokemons(limit = TOTAL_POKEMONS, offset = 0) {
         this.loader$.show();
         try {
             const response = this.api$.request<DataBasePokemon[]>({

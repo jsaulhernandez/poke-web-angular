@@ -11,7 +11,7 @@ import { CommonService } from 'src/app/data/services/common.service';
 import { LoaderService } from 'src/app/shared/services/loader.service';
 
 import { DataBasePokemon, DataPokemon } from 'src/app/data/api/ResponseApi';
-import { PATHS } from 'src/app/data/constants';
+import { PATHS, TOTAL_POKEMONS } from 'src/app/data/constants';
 
 @Component({
     selector: 'app-edit-selected-pokemons',
@@ -35,7 +35,7 @@ export class EditSelectedPokemonsComponent implements OnInit {
         this.getAllPokemons();
     }
 
-    async getAllPokemons(limit = 50, offset = 0) {
+    async getAllPokemons(limit = TOTAL_POKEMONS, offset = 0) {
         this.loader$.show();
         try {
             const response = this.api$.request<DataBasePokemon[]>({
