@@ -1,0 +1,99 @@
+{
+  "configVersion": 1,
+  "timestamp": 1703610485791,
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/222.620bbe402d8aa026.js",
+        "/329.fe43d440aff418a0.js",
+        "/353.6b9acdcd41806e0d.js",
+        "/common.539e0cec14b8823b.js",
+        "/favicon.ico",
+        "/index.html",
+        "/main.fd405e688debf658.js",
+        "/manifest.webmanifest",
+        "/polyfills.821ba94582b74bce.js",
+        "/runtime.61c7449c9e3f124f.js",
+        "/styles.087f5020260112d4.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/assets/icons/icon-128x128.png",
+        "/assets/icons/icon-144x144.png",
+        "/assets/icons/icon-152x152.png",
+        "/assets/icons/icon-192x192.png",
+        "/assets/icons/icon-384x384.png",
+        "/assets/icons/icon-512x512.png",
+        "/assets/icons/icon-72x72.png",
+        "/assets/icons/icon-96x96.png",
+        "/assets/images/gif/loading.gif",
+        "/assets/images/logo.png",
+        "/assets/images/pokeball.png",
+        "/assets/scss/_mat-progress-bar.scss",
+        "/assets/scss/_scroll-bar.scss"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/222.620bbe402d8aa026.js": "54563375dbe89ae41910c94c087c839b771e08ec",
+    "/329.fe43d440aff418a0.js": "2e16f68249291bc653ec532bebe0287b09b34392",
+    "/353.6b9acdcd41806e0d.js": "a9cbe0454fafb3e97f3d9bf5fe0f7e00b2c5e72e",
+    "/assets/icons/icon-128x128.png": "0634ab4262e3caee404d89c97bb6f6f7af59d49f",
+    "/assets/icons/icon-144x144.png": "0e7975f86347a89ab89e54106deb23d372eaca64",
+    "/assets/icons/icon-152x152.png": "08a6a91f6374df3e609c406525c9f824e59462cb",
+    "/assets/icons/icon-192x192.png": "7165feb3ef0bf51550585528d3cbbaf9c4ca19e3",
+    "/assets/icons/icon-384x384.png": "c7b9fd8e3b6e39ddbf2ba594b15b2700d39b7f9b",
+    "/assets/icons/icon-512x512.png": "e1720ec5c1185710f394e37667e6b86c81da2414",
+    "/assets/icons/icon-72x72.png": "139ca07dd2019c9efc987892723c382489bf317e",
+    "/assets/icons/icon-96x96.png": "c13eebe6012dd4b1c5ca3f5b04d88cc1499b57fa",
+    "/assets/images/gif/loading.gif": "27b5037ade6172384072889dde11048fff3839d5",
+    "/assets/images/logo.png": "1c68c250720ef0513592abeefd5c8939b428ef2b",
+    "/assets/images/pokeball.png": "98fc84b8228f89b8d5aa5845306dbd6bf95e877b",
+    "/assets/scss/_mat-progress-bar.scss": "c95f3f9e6e98f051e5b759670419273a61aa3edd",
+    "/assets/scss/_scroll-bar.scss": "ff7c282b02e97b604d5e3be1fbb4deaf442304f2",
+    "/common.539e0cec14b8823b.js": "2474c140aa3cbea33f7054d6ea67e557da953454",
+    "/favicon.ico": "fa855aacf16a1c42d363b609d6de2c3212344119",
+    "/index.html": "3f3c20107af200c840c79ca71100cbe6e57db1c9",
+    "/main.fd405e688debf658.js": "9b107488555f57520b3873bcb9304217ff52f29c",
+    "/manifest.webmanifest": "eb58e8424d8610e68b00541f908843562c4ffaaa",
+    "/polyfills.821ba94582b74bce.js": "af0170bcc5cd23ce3650d38d0c8b1fb58c91b911",
+    "/runtime.61c7449c9e3f124f.js": "a97b72e4b31e45c04bd7790279e69e9370ee2558",
+    "/styles.087f5020260112d4.css": "4e594e358036013f8be3801088cd614f33fa7c30"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
